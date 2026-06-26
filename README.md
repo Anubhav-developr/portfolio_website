@@ -1,35 +1,180 @@
-# Anubhav Mishra Portfolio
+# 🎨 प्रीमियम पोर्टफोलियो वेबसाइट
 
-A premium, motion-forward portfolio for Anubhav Mishra: Android Engineer, CS Graduate, and Builder.
+एक आधुनिक, प्रीमियम और पूर्णतः रिस्पॉन्सिव पोर्टफोलियो वेबसाइट, जिसे उपयोगकर्ता को शानदार प्रथम अनुभव (First Impression) देने के उद्देश्य से विकसित किया गया है।
 
-## Stack
+इस प्रोजेक्ट में Hero सेक्शन को और अधिक आकर्षक बनाने के लिए Google VEO 3 AI द्वारा जनरेट किया गया सिनेमैटिक वीडियो बैकग्राउंड उपयोग किया गया है, जिससे वेबसाइट का विज़ुअल अनुभव अगले स्तर पर पहुँचता है।
 
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Lucide React
+---
 
-## Run Locally
+# ✨ मुख्य विशेषताएँ
+
+* 🎥 Google VEO 3 AI द्वारा जनरेट किया गया सिनेमैटिक वीडियो बैकग्राउंड
+* 🌙 आधुनिक डार्क थीम आधारित प्रीमियम डिज़ाइन
+* 📱 पूर्णतः रिस्पॉन्सिव लेआउट (मोबाइल, टैबलेट और डेस्कटॉप)
+* ⚡ तेज़ लोडिंग और बेहतर प्रदर्शन
+* 🎯 आधुनिक UI/UX डिज़ाइन
+* 🎬 स्मूथ एनिमेशन और माइक्रो इंटरैक्शन
+* 🖱️ आकर्षक होवर इफेक्ट्स
+* ♿ एक्सेसिबिलिटी (Accessibility) को ध्यान में रखकर विकसित
+* 🚀 प्रोडक्शन-रेडी कोड संरचना
+
+---
+
+# 🎥 वीडियो बैकग्राउंड
+
+इस प्रोजेक्ट का सबसे प्रमुख आकर्षण Hero सेक्शन में लगाया गया AI Generated Cinematic Background Video है।
+
+यह वीडियो Google VEO 3 AI की सहायता से तैयार किया गया है ताकि वेबसाइट का पहला दृश्य (First Impression) अत्यंत प्रभावशाली और प्रीमियम दिखाई दे।
+
+वीडियो की विशेषताएँ:
+
+* स्वतः चलने वाला (Auto Play)
+* बिना आवाज़ (Muted)
+* लगातार चलने वाला (Loop)
+* सभी स्क्रीन साइज़ के लिए रिस्पॉन्सिव
+* टेक्स्ट की स्पष्टता के लिए डार्क ओवरले
+* स्मूथ और सिनेमैटिक अनुभव
+
+---
+
+# 📂 प्रोजेक्ट संरचना
+
+```
+project/
+│
+├── public/
+│   ├── videos/
+│   ├── images/
+│   └── icons/
+│
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── assets/
+│   ├── styles/
+│   ├── hooks/
+│   ├── utils/
+│   └── animations/
+│
+├── package.json
+├── README.md
+└── ...
+```
+
+---
+
+# 🛠 उपयोग की गई तकनीकें
+
+* React / Next.js
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* HTML5 Video
+* CSS3
+* JavaScript
+* Responsive Design
+
+---
+
+# 🚀 प्रोजेक्ट कैसे चलाएँ
+
+### 1. Repository Clone करें
+
+```bash
+git clone <repository-url>
+```
+
+### 2. प्रोजेक्ट फ़ोल्डर में जाएँ
+
+```bash
+cd project-name
+```
+
+### 3. आवश्यक पैकेज इंस्टॉल करें
 
 ```bash
 npm install
+```
+
+### 4. डेवलपमेंट सर्वर प्रारंभ करें
+
+```bash
 npm run dev
 ```
 
-Open `http://localhost:3000`.
-
-## Production Build
+### 5. प्रोडक्शन बिल्ड बनाएँ
 
 ```bash
 npm run build
-npm run start
 ```
 
-## Content
+---
 
-Portfolio content lives in `src/constants/portfolio.ts`. Update project links, contact email, and deployed domain before publishing.
+# 📱 रिस्पॉन्सिव सपोर्ट
 
-## Assets
+यह वेबसाइट निम्न सभी स्क्रीन साइज़ के लिए अनुकूलित है:
 
-The hero visual is stored at `public/assets/hero-lab.png`. Replace it with a personal portrait or project mockups when available.
+* 📱 मोबाइल
+* 📲 टैबलेट
+* 💻 लैपटॉप
+* 🖥️ डेस्कटॉप
+* 🖥️ अल्ट्रा-वाइड स्क्रीन
+
+---
+
+# 🎨 डिज़ाइन की विशेषताएँ
+
+* आधुनिक और आकर्षक लेआउट
+* संतुलित White Space
+* स्मूथ ट्रांज़िशन
+* प्रीमियम टाइपोग्राफी
+* ग्लास इफेक्ट
+* ग्रेडिएंट बैकग्राउंड
+* सिनेमैटिक विज़ुअल अनुभव
+* इंटरैक्टिव UI एलिमेंट्स
+
+---
+
+# ⚡ प्रदर्शन (Performance)
+
+* अनुकूलित (Optimized) Assets
+* तेज़ प्रारंभिक लोडिंग
+* हल्के और पुनः उपयोग योग्य Components
+* वीडियो लोडिंग का अनुकूलन
+* साफ़ और व्यवस्थित कोड संरचना
+
+---
+
+# ♿ एक्सेसिबिलिटी
+
+* Semantic HTML
+* Keyboard Navigation Support
+* बेहतर Color Contrast
+* Focus States
+* Screen Reader अनुकूल संरचना
+
+---
+
+# 🔮 भविष्य में जोड़े जाने वाले फीचर
+
+* 🌗 Light / Dark Theme Switch
+* 🌍 बहुभाषी समर्थन
+* 📩 Backend आधारित Contact Form
+* 📝 Blog सेक्शन
+* 📊 Analytics Integration
+* 🚀 उन्नत Page Transitions
+* 📈 Performance Monitoring
+
+---
+
+# 🙏 विशेष धन्यवाद
+
+Hero सेक्शन में उपयोग किया गया सिनेमैटिक वीडियो Google VEO 3 AI की सहायता से तैयार किया गया है, जिसने वेबसाइट के विज़ुअल अनुभव को और अधिक आधुनिक, आकर्षक और प्रीमियम बनाने में महत्वपूर्ण भूमिका निभाई।
+
+---
+
+# 📄 लाइसेंस
+
+यह प्रोजेक्ट शैक्षणिक, व्यक्तिगत पोर्टफोलियो और प्रदर्शन (Showcase) उद्देश्यों के लिए विकसित किया गया है।
+
+यदि इस प्रोजेक्ट का पुनः उपयोग किया जाता है, तो मूल लेखक एवं प्रयुक्त संसाधनों का उचित श्रेय देना अनुशंसित है।
