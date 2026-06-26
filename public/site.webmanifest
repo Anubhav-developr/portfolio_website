@@ -1,0 +1,16 @@
+{
+  "name": "Anubhav Mishra Portfolio",
+  "short_name": "Anubhav",
+  "description": "Android Engineer, CS Graduate, and Builder.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070807",
+  "theme_color": "#070807",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml"
+    }
+  ]
+}

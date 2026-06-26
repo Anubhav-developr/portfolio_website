@@ -1,0 +1,18 @@
+:root {
+  --font-display: "Clash Display", "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --bg: #070807;
+  --surface: #101412;
+  --surface-strong: #151a18;
+  --line: rgba(244, 240, 232, 0.12);
+  --text: #f4f0e8;
+  --text-soft: #a9afa8;
+  --teal: #4dd4bd;
+  --citron: #c9ff64;
+  --copper: #c47b4d;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --max-width: 1180px;
+}
