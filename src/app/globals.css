@@ -148,8 +148,14 @@ button {
   background: #c9ff64;
 }
 
-.ambient-video {
+.hero-bg-video {
   filter: contrast(1.1) saturate(1.18);
+}
+
+.hero-mobile-poster {
+  background-image: url("/assets/hero-lab.png");
+  background-position: center;
+  background-size: cover;
 }
 
 @keyframes text-pan {
@@ -191,6 +197,21 @@ button {
   }
 }
 
+@keyframes kenBurns {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-mobile-poster {
+    background-image: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -203,7 +224,7 @@ button {
 
   .cursor-ring,
   .cursor-dot,
-  .ambient-video {
+  .hero-bg-video {
     display: none;
   }
 }
