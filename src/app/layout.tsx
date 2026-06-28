@@ -1,16 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://anubhav-mishra.dev";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://portfolio-website-anubhavdeveloprs-projects.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Anubhav Mishra | Android Engineer",
+    default: "Anubhav Mishra | Full Stack Developer",
     template: "%s | Anubhav Mishra"
   },
   description:
-    "Portfolio of Anubhav Mishra, an Android Engineer, CS Graduate, and Builder from Shahjahanpur, Uttar Pradesh, India.",
+    "Portfolio of Anubhav Mishra — Full Stack Developer, GDS ABPM, CS Graduate, and CodeChef global rank 24 from Shahjahanpur, Uttar Pradesh, India.",
   keywords: [
     "Anubhav Mishra",
     "Android Engineer",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Anubhav Mishra" }],
   creator: "Anubhav Mishra",
   openGraph: {
-    title: "Anubhav Mishra | Android Engineer",
+    title: "Anubhav Mishra | Full Stack Developer",
     description: "Building elegant software, one commit at a time.",
     url: siteUrl,
     siteName: "Anubhav Mishra Portfolio",
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anubhav Mishra | Android Engineer",
+    title: "Anubhav Mishra | Full Stack Developer",
     description: "Building elegant software, one commit at a time.",
     images: ["/assets/hero-lab.png"]
   },

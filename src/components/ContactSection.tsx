@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { CheckCircle2, Mail, MapPin, Send } from "lucide-react";
+import { CheckCircle2, Code2, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/animations/variants";
 import { identity } from "@/constants/portfolio";
@@ -37,9 +37,7 @@ export function ContactSection() {
               <h3 className="mt-5 font-display text-4xl font-black text-ivory">
                 {identity.location}
               </h3>
-              <p className="mt-5 leading-8 text-ivory/62">
-                Available for thoughtful Android engineering, backend-adjacent product work, and polished portfolio-grade software builds.
-              </p>
+              <p className="mt-5 leading-8 text-ivory/62">{identity.availability}</p>
             </div>
             <div className="space-y-3">
               <a
@@ -53,6 +51,33 @@ export function ContactSection() {
                 <MapPin className="h-5 w-5 text-teal" />
                 Shahjahanpur, Uttar Pradesh
               </div>
+              <a
+                href={identity.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-2xl border border-ivory/10 bg-white/[0.035] p-4 text-ivory/68 transition hover:border-citron/42 hover:text-ivory"
+              >
+                <Github className="h-5 w-5 text-citron" />
+                GitHub · Anubhav-developr
+              </a>
+              <a
+                href={identity.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-2xl border border-ivory/10 bg-white/[0.035] p-4 text-ivory/68 transition hover:border-citron/42 hover:text-ivory"
+              >
+                <Linkedin className="h-5 w-5 text-citron" />
+                LinkedIn · Anubhav Mishra
+              </a>
+              <a
+                href={identity.codechef}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-2xl border border-ivory/10 bg-white/[0.035] p-4 text-ivory/68 transition hover:border-citron/42 hover:text-ivory"
+              >
+                <Code2 className="h-5 w-5 text-teal" />
+                CodeChef · Global Rank 24
+              </a>
             </div>
           </div>
         </motion.div>

@@ -13,7 +13,7 @@ export function ProfileSection() {
       <SectionHeader
         eyebrow="Profile"
         title="An Android builder with a CS backbone."
-        copy="Anubhav blends mobile product craft with algorithmic curiosity, database thinking, and the discipline that comes from shipping real workflows."
+        copy="B.Tech CSE graduate with hands-on full-stack, Android, and Firebase experience — shipping production-grade software while serving as Gramin Dak Sevak at India Post."
       />
 
       <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">

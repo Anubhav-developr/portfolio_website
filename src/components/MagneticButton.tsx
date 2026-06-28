@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 type MagneticButtonProps<T extends ElementType> = {
   as?: T;
   icon?: boolean;
+  external?: boolean;
   variant?: "primary" | "ghost";
 } & ComponentPropsWithoutRef<T>;
 
@@ -16,6 +17,7 @@ export function MagneticButton<T extends ElementType = "a">({
   className,
   children,
   icon = true,
+  external = false,
   variant = "primary",
   ...props
 }: MagneticButtonProps<T>) {
@@ -50,15 +52,20 @@ export function MagneticButton<T extends ElementType = "a">({
           variant === "ghost" && "border border-ivory/14 bg-white/[0.035] text-ivory hover:border-teal/55",
           className
         )}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         {...props}
       >
-        <span>{children}</span>
         {icon ? (
-          <ArrowUpRight
-            aria-hidden="true"
-            className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          />
-        ) : null}
+          <>
+            <span>{children}</span>
+            <ArrowUpRight
+              aria-hidden="true"
+              className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </>
+        ) : (
+          children
+        )}
       </Component>
     </motion.span>
   );

@@ -1,0 +1,612 @@
+.startup-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  cursor: none;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(99, 136, 255, 0.13), transparent 30%),
+    radial-gradient(circle at 72% 24%, rgba(167, 139, 250, 0.12), transparent 26%),
+    #03040a;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+body.startup-active {
+  overflow: hidden;
+}
+
+.startup-stage--exit {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.startup-canvas,
+.startup-grid,
+.startup-scanline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.startup-canvas {
+  display: block;
+}
+
+.startup-grid {
+  pointer-events: none;
+  opacity: 0;
+  animation: startupGrid 1s ease 0.3s forwards;
+  background-image:
+    linear-gradient(to right, transparent 24.95%, rgba(99, 136, 255, 0.04) 25%, transparent 25.05%),
+    linear-gradient(to right, transparent 49.95%, rgba(99, 136, 255, 0.04) 50%, transparent 50.05%),
+    linear-gradient(to right, transparent 74.95%, rgba(99, 136, 255, 0.04) 75%, transparent 75.05%),
+    linear-gradient(to bottom, transparent 24.95%, rgba(99, 136, 255, 0.04) 25%, transparent 25.05%),
+    linear-gradient(to bottom, transparent 49.95%, rgba(99, 136, 255, 0.04) 50%, transparent 50.05%),
+    linear-gradient(to bottom, transparent 74.95%, rgba(99, 136, 255, 0.04) 75%, transparent 75.05%);
+}
+
+.startup-scanline {
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 136, 255, 0.6) 30%,
+    rgba(167, 139, 250, 0.8) 50%,
+    rgba(99, 136, 255, 0.6) 70%,
+    transparent 100%
+  );
+  animation: startupScan 3s ease-in-out 0.1s forwards;
+  opacity: 0;
+}
+
+.startup-bracket {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  animation: startupBracket 0.4s ease forwards;
+}
+
+.startup-bracket--top-left {
+  top: 16px;
+  left: 16px;
+  border-top: 1px solid rgba(99, 136, 255, 0.4);
+  border-left: 1px solid rgba(99, 136, 255, 0.4);
+  animation-delay: 1s;
+}
+
+.startup-bracket--top-right {
+  top: 16px;
+  right: 16px;
+  border-top: 1px solid rgba(99, 136, 255, 0.4);
+  border-right: 1px solid rgba(99, 136, 255, 0.4);
+  animation-delay: 1s;
+}
+
+.startup-bracket--bottom-left {
+  bottom: 16px;
+  left: 16px;
+  border-bottom: 1px solid rgba(99, 136, 255, 0.4);
+  border-left: 1px solid rgba(99, 136, 255, 0.4);
+  animation-delay: 1.1s;
+}
+
+.startup-bracket--bottom-right {
+  right: 16px;
+  bottom: 16px;
+  border-right: 1px solid rgba(99, 136, 255, 0.4);
+  border-bottom: 1px solid rgba(99, 136, 255, 0.4);
+  animation-delay: 1.2s;
+}
+
+.startup-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(92vw, 440px);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.startup-orbit {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.startup-ring {
+  position: absolute;
+  border-style: solid;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.2);
+  animation-name: startupRingIn, startupSpinClockwise;
+  animation-duration: 3.2s, var(--spin-duration);
+  animation-delay: var(--ring-delay), var(--ring-delay);
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), linear;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+}
+
+.startup-ring--one {
+  inset: 0;
+  --ring-delay: 0.2s;
+  --spin-duration: 12s;
+  border-width: 0.5px;
+  border-color: rgba(99, 136, 255, 0.15);
+}
+
+.startup-ring--two {
+  inset: 14px;
+  --ring-delay: 0.5s;
+  --spin-duration: 18s;
+  border-width: 0.5px;
+  border-color: rgba(167, 139, 250, 0.12);
+  animation-name: startupRingIn, startupSpinCounter;
+}
+
+.startup-ring--three {
+  inset: 30px;
+  --ring-delay: 0.8s;
+  --spin-duration: 9s;
+  border-width: 0.5px;
+  border-color: rgba(56, 189, 248, 0.1);
+}
+
+.startup-ring--four {
+  inset: 48px;
+  --ring-delay: 1.1s;
+  --spin-duration: 24s;
+  border-width: 0.5px;
+  border-color: rgba(99, 136, 255, 0.08);
+  animation-name: startupRingIn, startupSpinCounter;
+}
+
+.startup-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  opacity: 0;
+  transform-origin: 0 0;
+  animation-name: startupOrbit;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.startup-dot--one {
+  --orbit-radius: 86px;
+  background: rgba(99, 136, 255, 0.8);
+  animation-duration: 6s;
+  animation-delay: 1.5s;
+}
+
+.startup-dot--two {
+  --orbit-radius: 72px;
+  background: rgba(167, 139, 250, 0.7);
+  animation-duration: 10s;
+  animation-delay: 2s;
+}
+
+.startup-dot--three {
+  --orbit-radius: 56px;
+  background: rgba(56, 189, 248, 0.6);
+  animation-duration: 15s;
+  animation-delay: 2.5s;
+}
+
+.startup-logo {
+  position: absolute;
+  inset: 62px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0) rotate(0deg);
+  animation: startupLogo 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+}
+
+.startup-logo-bar {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  animation: startupLogoBar 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.startup-logo-bar--one {
+  left: 8px;
+  top: 9px;
+  width: 6px;
+  height: 38px;
+  background: #6388ff;
+  animation-delay: 1.6s;
+}
+
+.startup-logo-bar--two {
+  left: 18px;
+  top: 19px;
+  width: 6px;
+  height: 28px;
+  background: #a78bfa;
+  animation-delay: 1.72s;
+}
+
+.startup-logo-bar--three {
+  left: 28px;
+  top: 27px;
+  width: 6px;
+  height: 20px;
+  background: #38bdf8;
+  animation-delay: 1.84s;
+}
+
+.startup-logo-bar--four {
+  left: 8px;
+  top: 50px;
+  width: 20px;
+  height: 3px;
+  background: rgba(99, 136, 255, 0.5);
+  animation-delay: 1.96s;
+}
+
+.startup-name {
+  margin: 26px 0 0;
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.startup-name-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) scale(0.6);
+  animation: startupLetter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.startup-name-letter--6 {
+  color: #6388ff;
+}
+
+.startup-name-letter--8 {
+  color: #a78bfa;
+}
+
+.startup-name-letter--9 {
+  color: #38bdf8;
+}
+
+.startup-tagline {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  line-height: 1.8;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: startupTagline 0.8s ease 3.5s forwards;
+}
+
+.startup-enter {
+  position: relative;
+  margin-top: 34px;
+  overflow: hidden;
+  border: 0.5px solid rgba(99, 136, 255, 0.35);
+  border-radius: 6px;
+  padding: 10px 28px;
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: startupEnter 0.8s ease 4s forwards;
+  cursor: none;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.startup-enter::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: translateX(-120%);
+  animation: startupShimmer 3s ease-in-out 4.5s infinite;
+}
+
+.startup-enter:hover {
+  border-color: rgba(99, 136, 255, 0.6);
+  color: white;
+  background: rgba(99, 136, 255, 0.1);
+}
+
+.startup-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1.5px;
+  width: 0;
+  background: linear-gradient(90deg, #6388ff, #a78bfa, #38bdf8);
+  animation: startupProgress 3.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+}
+
+.startup-status {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  color: rgba(99, 136, 255, 0.5);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: startupStatus 0.5s ease 2s forwards;
+}
+
+.startup-cursor-dot,
+.startup-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.startup-cursor-dot {
+  width: 4px;
+  height: 4px;
+  background: #6388ff;
+}
+
+.startup-cursor-ring {
+  width: 24px;
+  height: 24px;
+  border: 0.5px solid rgba(99, 136, 255, 0.5);
+}
+
+@keyframes startupGrid {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes startupScan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes startupBracket {
+  from {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes startupRingIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes startupSpinClockwise {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes startupSpinCounter {
+  to {
+    rotate: -360deg;
+  }
+}
+
+@keyframes startupOrbit {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) translateX(var(--orbit-radius)) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: rotate(36deg) translateX(var(--orbit-radius)) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(360deg) translateX(var(--orbit-radius)) scale(1);
+  }
+}
+
+@keyframes startupLogo {
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes startupLogoBar {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes startupLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes startupTagline {
+  to {
+    opacity: 1;
+    letter-spacing: 0.22em;
+  }
+}
+
+@keyframes startupEnter {
+  to {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}
+
+@keyframes startupShimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  55%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes startupProgress {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes startupStatus {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tokenFlow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(6px);
+  }
+}
+
+@keyframes astGrow {
+  from {
+    opacity: 0;
+    transform: scaleY(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes boardPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 255, 100, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px 2px rgba(201, 255, 100, 0.35);
+  }
+}
+
+@keyframes syncBeam {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  40%,
+  60% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes depositSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pageFlip {
+  0%,
+  100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(-18deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .startup-orbit {
+    width: 160px;
+    height: 160px;
+  }
+
+  .startup-name {
+    font-size: 28px;
+  }
+
+  .startup-tagline {
+    padding-inline: 20px;
+    font-size: 9px;
+  }
+
+  .startup-status {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .startup-stage,
+  .startup-stage * {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+  }
+}

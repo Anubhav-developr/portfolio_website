@@ -18,7 +18,9 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: identity.name,
-    jobTitle: "Android Engineer",
+    jobTitle: "Full Stack Developer",
+    url: identity.website,
+    sameAs: [identity.github, identity.linkedin, identity.codechef],
     description: identity.tagline,
     address: {
       "@type": "PostalAddress",

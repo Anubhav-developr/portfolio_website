@@ -1,6 +1,15 @@
 import type { LucideIcon } from "lucide-react";
 
-export type ProjectTone = "pulse" | "ledger" | "tree" | "compiler";
+export type ProjectTone =
+  | "pulse"
+  | "postoffice"
+  | "tree"
+  | "compiler"
+  | "clipboard"
+  | "invoice"
+  | "weather"
+  | "journal"
+  | "portfolio";
 
 export type Project = {
   name: string;
@@ -11,6 +20,8 @@ export type Project = {
   proof: string[];
   tone: ProjectTone;
   accent: string;
+  github: string;
+  liveUrl?: string;
 };
 
 export type TimelineItem = {
