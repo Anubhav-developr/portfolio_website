@@ -8,6 +8,7 @@ import { ProfileSection } from "@/components/ProfileSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { StatsRibbon } from "@/components/StatsRibbon";
+import { StartupIntro } from "@/components/StartupIntro";
 import { TimelineSection } from "@/components/TimelineSection";
 import { MotionPreferenceProvider } from "@/context/MotionPreferenceContext";
 import { identity, projects } from "@/constants/portfolio";
@@ -30,6 +31,7 @@ export default function Home() {
 
   return (
     <MotionPreferenceProvider>
+      <StartupIntro />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
