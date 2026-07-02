@@ -8,31 +8,59 @@ import { cn } from "@/lib/utils";
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [elevated, setElevated] = useState(false);
+  const [active, setActive] = useState(navItems[0]?.href ?? "#profile");
 
   useEffect(() => {
-    const onScroll = () => setElevated(window.scrollY > 24);
+    const onScroll = () => setElevated(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.href.replace("#", "")))
+      .filter(Boolean) as HTMLElement[];
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target.id) {
+          setActive(`#${visible.target.id}`);
+        }
+      },
+      { threshold: [0.25, 0.45], rootMargin: "-28% 0px -48% 0px" }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-5">
+    <header className="fixed left-1/2 top-5 z-[100] w-[calc(100%-32px)] max-w-[720px] -translate-x-1/2">
       <nav
         aria-label="Primary navigation"
         className={cn(
-          "mx-auto flex w-full max-w-[1180px] items-center justify-between rounded-full border px-4 py-3 transition",
+          "flex items-center justify-between rounded-full border-[0.5px] px-5 py-1.5 pr-1.5 shadow-[0_0_0_0.5px_rgba(255,255,255,0.04)_inset,0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-[400ms]",
           elevated
-            ? "border-ivory/14 bg-ink-950/78 shadow-velvet backdrop-blur-2xl"
-            : "border-white/8 bg-white/[0.035] backdrop-blur-xl"
+            ? "border-white/10 bg-[rgba(10,13,18,0.82)] backdrop-blur-[32px]"
+            : "border-white/[0.08] bg-[rgba(10,13,18,0.75)] backdrop-blur-[24px]"
         )}
+        style={{ WebkitBackdropFilter: elevated ? "blur(32px) saturate(1.8)" : "blur(24px) saturate(1.8)" }}
       >
-        <a href="#top" className="group inline-flex items-center gap-3" aria-label="Anubhav Mishra home">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-ivory text-sm font-black text-ink-950">
+        <a
+          href="#top"
+          className="hidden items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-[var(--text-primary)] sm:inline-flex"
+          aria-label="Anubhav Mishra home"
+          onClick={() => setActive("#profile")}
+        >
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--text-primary)] text-[10px] font-black text-[var(--bg-void)]">
             AM
-          </span>
-          <span className="hidden text-sm font-semibold text-ivory/88 sm:inline">
-            Anubhav Mishra
           </span>
         </a>
 
@@ -41,39 +69,49 @@ export function Navigation() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm text-ivory/64 transition hover:bg-white/[0.055] hover:text-ivory"
+              onClick={() => setActive(item.href)}
+              className={cn(
+                "relative rounded-full px-3 py-2 text-[12px] font-medium tracking-[0.01em] transition-colors duration-200",
+                active === item.href ? "text-[var(--text-primary)]" : "text-white/[0.45] hover:text-white/[0.85]"
+              )}
             >
               {item.label}
+              {active === item.href ? (
+                <span className="absolute bottom-1 left-1/2 h-0.5 w-0.5 -translate-x-1/2 rounded-full bg-[var(--accent-blue)]" />
+              ) : null}
             </a>
           ))}
         </div>
 
         <a
           href="#contact"
-          className="hidden rounded-full bg-white/[0.06] px-4 py-2 text-sm font-semibold text-ivory ring-1 ring-ivory/12 transition hover:bg-citron hover:text-ink-950 lg:inline-flex"
+          className="hidden rounded-full bg-[rgba(99,136,255,0.9)] px-[18px] py-2 text-[11px] font-semibold uppercase tracking-[0.04em] text-white shadow-[0_0_20px_rgba(99,136,255,0.3)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_32px_rgba(99,136,255,0.5)] md:inline-flex"
         >
           Start a build
         </a>
 
         <button
           type="button"
-          className="grid h-10 w-10 place-items-center rounded-full border border-ivory/12 bg-white/[0.04] text-ivory md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full border-[0.5px] border-white/10 bg-white/[0.04] text-[var(--text-primary)] md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </nav>
 
       {open ? (
-        <div className="mx-auto mt-3 w-full max-w-[1180px] rounded-3xl border border-ivory/12 bg-ink-950/92 p-3 shadow-velvet backdrop-blur-2xl md:hidden">
+        <div className="mt-3 rounded-3xl border-[0.5px] border-white/10 bg-[rgba(10,13,18,0.92)] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:hidden">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="block rounded-2xl px-4 py-3 text-base text-ivory/78 hover:bg-white/[0.055] hover:text-ivory"
-              onClick={() => setOpen(false)}
+              className="block rounded-2xl px-4 py-3 text-sm text-white/70 transition hover:bg-white/[0.055] hover:text-white"
+              onClick={() => {
+                setActive(item.href);
+                setOpen(false);
+              }}
             >
               {item.label}
             </a>

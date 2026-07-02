@@ -18,8 +18,8 @@ export function BackgroundVideo() {
         className="absolute inset-0 z-10"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(7,8,7,0.25) 0%, rgba(7,8,7,0.55) 50%, rgba(7,8,7,0.85) 100%)",
-          boxShadow: "inset 0 0 120px 40px rgba(7,8,7,0.7)",
+            "linear-gradient(to bottom, rgba(2,3,4,0.18) 0%, rgba(2,3,4,0.58) 52%, rgba(2,3,4,0.9) 100%)",
+          boxShadow: "inset 0 0 120px 40px rgba(2,3,4,0.76)",
           mixBlendMode: "multiply"
         }}
       />

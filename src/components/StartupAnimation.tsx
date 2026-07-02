@@ -278,7 +278,7 @@ export function StartupAnimation({ onComplete }: StartupAnimationProps) {
           ))}
         </h1>
 
-        <p className="startup-tagline">Full Stack Developer · Builder · CS Graduate</p>
+        <p className="startup-tagline">Full Stack Developer / GDS ABPM / CS Graduate</p>
 
         <button className="startup-enter" type="button" onClick={complete}>
           Enter portfolio
@@ -286,7 +286,7 @@ export function StartupAnimation({ onComplete }: StartupAnimationProps) {
       </div>
 
       <div className="startup-progress" />
-      <div className="startup-status">Portfolio · 2026</div>
+      <div className="startup-status">Portfolio / 2026</div>
       <div ref={dotRef} className="startup-cursor-dot" />
       <div ref={ringRef} className="startup-cursor-ring" />
     </div>

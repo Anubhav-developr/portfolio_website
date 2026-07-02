@@ -5,6 +5,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        void: "var(--bg-void)",
+        deep: "var(--bg-deep)",
+        surface: "var(--bg-surface)",
+        raised: "var(--bg-raised)",
+        overlay: "var(--bg-overlay)",
+        accent: {
+          blue: "var(--accent-blue)",
+          violet: "var(--accent-violet)",
+          cyan: "var(--accent-cyan)",
+          green: "var(--accent-green)"
+        },
         ink: {
           950: "#070807",
           900: "#0e1110",

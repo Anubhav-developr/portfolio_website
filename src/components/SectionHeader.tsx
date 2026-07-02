@@ -16,15 +16,15 @@ export function SectionHeader({ eyebrow, title, copy }: SectionHeaderProps) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-120px" }}
-      className="mb-12 max-w-3xl"
+      className="reveal mb-12 max-w-3xl"
     >
-      <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-teal/82">
+      <p className="text-micro mb-3 text-[var(--accent-blue)]">
         {eyebrow}
       </p>
-      <h2 className="text-balance font-display text-4xl font-black leading-tight text-ivory sm:text-5xl lg:text-6xl">
+      <h2 className="text-heading text-balance font-display text-[var(--text-primary)]">
         {title}
       </h2>
-      {copy ? <p className="mt-5 text-lg leading-8 text-ivory/62">{copy}</p> : null}
+      {copy ? <p className="text-body mt-5 max-w-2xl">{copy}</p> : null}
     </motion.div>
   );
 }

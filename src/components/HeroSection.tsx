@@ -1,60 +1,59 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronDown, MapPin, Sparkle } from "lucide-react";
+import { ChevronDown, GraduationCap, MapPin, PackageCheck, Trophy } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { fadeUp, scaleIn, stagger } from "@/animations/variants";
 import { BackgroundVideo } from "@/components/BackgroundVideo";
-import { identity } from "@/constants/portfolio";
+import { HeroCanvas } from "@/components/HeroCanvas";
 import { MagneticButton } from "@/components/MagneticButton";
+import { identity } from "@/constants/portfolio";
+
+const heroChips = [
+  { label: "Global Rank 24", icon: Trophy, className: "right-0 top-12", duration: "4s" },
+  { label: "9 Projects Shipped", icon: PackageCheck, className: "bottom-24 left-0", duration: "5s" },
+  { label: "B.Tech CSE 2023", icon: GraduationCap, className: "bottom-8 right-8", duration: "3.5s" }
+];
 
 export function HeroSection() {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 700], [0, -96]);
-  const opacity = useTransform(scrollY, [0, 520], [1, 0.46]);
+  const y = useTransform(scrollY, [0, 700], [0, -54]);
+  const opacity = useTransform(scrollY, [0, 520], [1, 0.58]);
 
   return (
     <section
       id="top"
-      className="hero-mobile-poster relative isolate flex min-h-[100svh] items-center overflow-hidden px-5 pb-16 pt-28"
+      className="hero-mobile-poster relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[var(--grad-hero)] px-5 pb-20 pt-[120px]"
     >
       <BackgroundVideo />
-      <motion.div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 z-10 h-44 bg-gradient-to-t from-ink-950 to-transparent"
-      />
+      <HeroCanvas />
+      <div aria-hidden="true" className="absolute inset-0 z-10 bg-[rgba(2,3,4,0.38)]" />
+      <div aria-hidden="true" className="section-fade z-20" />
 
-      <div className="relative z-20 w-full">
-        <div className="section-shell grid items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="relative z-30 w-full">
+        <div className="section-shell grid items-center gap-14 lg:grid-cols-[0.6fr_0.4fr]">
           <motion.div variants={stagger} initial="hidden" animate="visible" className="relative z-10">
             <motion.div
               variants={fadeUp}
-              className="mb-7 inline-flex items-center gap-2 rounded-full border border-ivory/12 bg-white/[0.04] px-3 py-2 text-sm text-ivory/68 backdrop-blur"
+              className="mb-7 inline-flex rounded-full border-[0.5px] border-[rgba(99,136,255,0.2)] bg-[rgba(99,136,255,0.06)] px-[14px] py-[5px] text-[10px] font-medium uppercase tracking-[0.18em] text-[rgba(99,136,255,0.8)]"
             >
-              <Sparkle className="h-4 w-4 text-citron" aria-hidden="true" />
-              {identity.title}
+              {identity.heroEyebrow}
             </motion.div>
 
-            <motion.h1
-              variants={fadeUp}
-              className="max-w-4xl text-balance font-display text-[clamp(3.4rem,8.2vw,8.5rem)] font-black leading-[0.9] tracking-normal"
-            >
-              {identity.name}{" "}
-              <span className="block gradient-text">builds quietly brilliant software.</span>
+            <motion.h1 variants={fadeUp} className="text-display max-w-4xl text-balance font-display text-[var(--text-primary)]">
+              <span className="block">{identity.name}</span>
+              {" "}
+              <span className="block">
+                builds <span className="gradient-text">quietly brilliant</span> software.
+              </span>
             </motion.h1>
 
-            <motion.p
-              variants={fadeUp}
-              className="mt-7 max-w-2xl text-lg leading-8 text-ivory/70 sm:text-xl"
-            >
+            <motion.p variants={fadeUp} className="text-body mt-7 max-w-[400px] text-base">
               {identity.tagline}
             </motion.p>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-6 inline-flex items-center gap-2 text-sm text-ivory/58"
-            >
-              <MapPin className="h-4 w-4 text-teal" aria-hidden="true" />
+            <motion.div variants={fadeUp} className="mt-3 inline-flex items-center gap-2 text-xs text-[var(--text-muted)]">
+              <MapPin className="h-4 w-4 text-[var(--accent-cyan)]" aria-hidden="true" />
               {identity.location}
             </motion.div>
 
@@ -71,72 +70,53 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             style={{ y, opacity }}
-            className="relative min-h-[520px] lg:min-h-[680px]"
+            className="relative mx-auto aspect-[4/5] w-full max-w-[480px]"
           >
-            <div className="absolute inset-0 rounded-[36px] border border-ivory/10 bg-white/[0.028] shadow-velvet backdrop-blur-2xl" />
-            <div className="scanline absolute inset-4 overflow-hidden rounded-[28px] border border-white/10 bg-ink-900/74">
-              <div className="absolute inset-0">
-                <Image
-                  src="/assets/hero-lab.png"
-                  alt="Cinematic Android engineering visual"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 52vw"
-                  className="object-cover opacity-88"
-                />
-              </div>
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,8,7,0.18),transparent_45%,rgba(7,8,7,0.26))]" />
+            <div className="absolute right-[-20px] top-10 aspect-[4/3] w-[75%] rotate-[6deg] overflow-hidden rounded-[var(--card-radius)] border-[0.5px] border-[var(--border-soft)] bg-[var(--bg-raised)] opacity-50 blur-[1px]">
+              <Image
+                src="/assets/hero-lab.png"
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 74vw, 28vw"
+                className="object-cover"
+              />
             </div>
 
-            <motion.div
-              aria-hidden="true"
-              className="absolute left-3 top-14 w-52 rounded-2xl border border-ivory/12 bg-ink-950/68 p-4 shadow-rim backdrop-blur-xl sm:left-8"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            <div
+              className="scanline absolute left-0 top-0 aspect-[4/3] w-[85%] overflow-hidden rounded-[var(--card-radius)] border-[0.5px] border-[var(--border-mid)] bg-[var(--bg-raised)] shadow-[0_32px_80px_rgba(0,0,0,0.6),0_0_0_0.5px_rgba(255,255,255,0.06)_inset]"
+              style={{ animation: "heroFloat 6s ease-in-out infinite" }}
             >
-              <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-ivory/42">
-                build graph
-                <span className="h-2 w-2 rounded-full bg-citron" />
-              </div>
-              <div className="mt-5 space-y-2">
-                {[88, 64, 78].map((width, index) => (
-                  <div key={width} className="h-2 rounded-full bg-white/[0.06]">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-teal to-citron"
-                      style={{ width: `${width - index * 5}%` }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+              <Image
+                src="/assets/hero-lab.png"
+                alt="Cinematic Android engineering visual"
+                fill
+                priority
+                sizes="(max-width: 1024px) 86vw, 34vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_20%,rgba(99,136,255,0.18),transparent_42%),linear-gradient(180deg,transparent,rgba(2,3,4,0.35))]" />
+            </div>
 
-            <motion.div
-              aria-hidden="true"
-              className="absolute bottom-16 right-2 w-60 rounded-2xl border border-ivory/12 bg-ink-950/70 p-4 shadow-rim backdrop-blur-xl sm:right-8"
-              animate={{ y: [0, 14, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="grid grid-cols-5 gap-2">
-                {Array.from({ length: 15 }).map((_, index) => (
-                  <span
-                    key={index}
-                    className="h-8 rounded-lg border border-white/8 bg-white/[0.04]"
-                    style={{
-                      opacity: 0.35 + (index % 5) * 0.12,
-                      background:
-                        index % 4 === 0 ? "rgba(201,255,100,.16)" : "rgba(255,255,255,.04)"
-                    }}
-                  />
-                ))}
-              </div>
-            </motion.div>
+            {heroChips.map((chip) => {
+              const Icon = chip.icon;
+              return (
+                <div
+                  key={chip.label}
+                  className={`absolute inline-flex items-center gap-2 rounded-full border-[0.5px] border-white/10 bg-[rgba(10,13,18,0.85)] px-[14px] py-1.5 text-[11px] font-medium text-[var(--text-secondary)] shadow-[0_4px_16px_rgba(0,0,0,0.3)] backdrop-blur-xl ${chip.className}`}
+                  style={{ animation: `chipFloat ${chip.duration} ease-in-out infinite` }}
+                >
+                  <Icon className="h-3.5 w-3.5 text-[var(--accent-cyan)]" />
+                  {chip.label}
+                </div>
+              );
+            })}
           </motion.div>
         </div>
 
         <a
           href="#profile"
           aria-label="Scroll to profile"
-          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 rounded-full border border-ivory/12 p-3 text-ivory/58 transition hover:text-ivory md:grid"
+          className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 rounded-full border-[0.5px] border-white/[0.12] p-3 text-white/50 transition hover:border-white/25 hover:text-white md:grid"
         >
           <ChevronDown className="h-5 w-5 animate-bounce" />
         </a>

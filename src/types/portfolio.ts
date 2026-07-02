@@ -42,3 +42,16 @@ export type Stat = {
   value: string;
   label: string;
 };
+
+export type Achievement = {
+  title: string;
+  detail: string;
+  metric: string;
+  href?: string;
+};
+
+export type SocialLink = {
+  label: string;
+  href: string;
+  external: boolean;
+};

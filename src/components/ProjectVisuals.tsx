@@ -21,15 +21,15 @@ export function ProjectVisual({ project }: { project: Project }) {
   };
 
   return (
-    <div className="relative min-h-[460px] overflow-hidden rounded-[26px] border border-ivory/10 bg-ink-950/80 p-5">
+    <div className="relative min-h-[300px] overflow-hidden border-b-[0.5px] border-[var(--border-soft)] bg-[var(--bg-raised)] p-5 lg:min-h-full lg:border-b-0 lg:border-r-[0.5px]">
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-50"
         style={{
-          background: `linear-gradient(135deg, ${project.accent}24, transparent 38%), linear-gradient(45deg, rgba(244,240,232,0.08), transparent 50%)`
+          background: `radial-gradient(circle at 50% 45%, ${project.accent}24, transparent 42%), linear-gradient(135deg, ${project.accent}18, transparent 38%), linear-gradient(45deg, rgba(255,255,255,0.06), transparent 50%)`
         }}
       />
-      <div className="relative z-10 flex h-full min-h-[420px] items-center justify-center">
+      <div className="relative z-10 flex h-full min-h-[280px] items-center justify-center">
         {visuals[project.tone]}
       </div>
     </div>
@@ -38,8 +38,8 @@ export function ProjectVisual({ project }: { project: Project }) {
 
 function ExamPulseVisual({ accent }: VisualProps) {
   return (
-    <div className="relative h-[390px] w-[220px] rounded-[34px] border border-ivory/18 bg-ink-900 p-3 shadow-velvet transition duration-500 group-hover:rotate-[-2deg] group-hover:scale-[1.02]">
-      <div className="h-full rounded-[26px] border border-white/8 bg-[#0b0f0d] p-4">
+    <div className="relative h-[390px] w-[220px] rounded-[34px] border border-white/[0.18] bg-ink-900 p-3 shadow-velvet transition duration-500 group-hover:rotate-[-2deg] group-hover:scale-[1.02]">
+      <div className="h-full rounded-[26px] border border-white/[0.08] bg-[#0b0f0d] p-4">
         <div className="mx-auto mb-5 h-1 w-14 rounded-full bg-white/22" />
         <motion.div
           className="rounded-3xl p-4"
@@ -47,7 +47,7 @@ function ExamPulseVisual({ accent }: VisualProps) {
           animate={{ scale: [1, 1.03, 1] }}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
         >
-          <p className="text-xs uppercase tracking-[0.22em] text-ivory/42">Quiz pulse</p>
+          <p className="text-xs uppercase tracking-[0.22em] text-white/[0.42]">Quiz pulse</p>
           <div className="mt-5 h-24 rounded-2xl border border-ivory/10 bg-white/[0.055]">
             <motion.div
               className="h-full rounded-2xl"
@@ -82,21 +82,21 @@ function ExamPulseVisual({ accent }: VisualProps) {
 }
 
 function PostOfficeVisual({ accent }: VisualProps) {
-  const rows = ["Savings A/C · ₹12,450", "RD Deposit · ₹2,000", "Customer #PO-2841", "Balance update"];
+  const rows = ["Savings A/C / INR 12,450", "RD Deposit / INR 2,000", "Customer #PO-2841", "Balance update"];
 
   return (
     <div className="w-full max-w-[520px]">
-      <div className="mx-auto mb-5 flex h-[280px] w-[160px] flex-col rounded-[28px] border border-ivory/14 bg-ink-900 p-3 shadow-velvet">
+      <div className="mx-auto mb-5 flex h-[280px] w-[160px] flex-col rounded-[28px] border border-white/[0.14] bg-ink-900 p-3 shadow-velvet">
         <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-white/20" />
         <div className="mb-3 flex items-center gap-2 rounded-xl px-2 py-2" style={{ background: `${accent}22` }}>
           <Landmark className="h-4 w-4" style={{ color: accent }} />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-ivory/70">India Post</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-white/70">India Post</span>
         </div>
         <div className="flex-1 space-y-2 overflow-hidden p-1">
           {rows.map((row, index) => (
             <motion.div
               key={row}
-              className="rounded-xl border border-ivory/10 bg-white/[0.04] px-3 py-2 text-[10px] text-ivory/62"
+              className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[10px] text-white/[0.62]"
               initial={{ opacity: 0, x: -16 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.55, duration: 0.45, repeat: Infinity, repeatDelay: 4 }}
@@ -155,7 +155,7 @@ function MinimaxVisual({ accent }: VisualProps) {
         ))}
       </div>
       <div className="relative h-[220px] rounded-[24px] border border-ivory/12 bg-ink-900/82 p-4">
-        <p className="mb-3 text-xs uppercase tracking-[0.2em] text-ivory/42">Minimax tree</p>
+        <p className="mb-3 text-xs uppercase tracking-[0.2em] text-white/[0.42]">Minimax tree</p>
         <svg className="absolute inset-x-4 top-12 h-[150px] w-[calc(100%-2rem)]" viewBox="0 0 240 150" aria-hidden="true">
           <path d="M120 10 L60 55 L30 100" stroke={accent} strokeOpacity="0.5" strokeWidth="1.5" fill="none" />
           <path d="M120 10 L60 55 L90 100" stroke={accent} strokeOpacity="0.3" strokeWidth="1.5" fill="none" strokeDasharray="4 4" />
@@ -193,11 +193,11 @@ function CompilerVisual({ accent }: VisualProps) {
   return (
     <div className="grid w-full max-w-[560px] gap-4 md:grid-cols-[0.9fr_1.1fr]">
       <div className="rounded-[24px] border border-ivory/12 bg-ink-900/82 p-4 shadow-rim">
-        <div className="mb-4 flex items-center gap-2 text-sm text-ivory/48">
+        <div className="mb-4 flex items-center gap-2 text-sm text-white/[0.48]">
           <Code2 className="h-4 w-4" style={{ color: accent }} />
           token stream
         </div>
-        <div className="space-y-2 font-mono text-xs text-ivory/58">
+        <div className="space-y-2 font-mono text-xs text-white/[0.58]">
           {tokens.map((token, index) => (
             <motion.div
               key={token}
@@ -212,12 +212,12 @@ function CompilerVisual({ accent }: VisualProps) {
         </div>
       </div>
       <div className="rounded-[24px] border border-ivory/12 bg-ink-900/82 p-5 shadow-rim">
-        <p className="mb-4 text-sm text-ivory/48">abstract syntax tree</p>
+        <p className="mb-4 text-sm text-white/[0.48]">abstract syntax tree</p>
         <div className="space-y-3">
           {branches.map((branch, index) => (
             <motion.div
               key={branch}
-              className="rounded-2xl border border-ivory/10 bg-white/[0.035] px-4 py-3 text-sm text-ivory/68"
+              className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm text-white/[0.68]"
               style={{ marginLeft: index * 18, transformOrigin: "left center" }}
               initial={{ opacity: 0, scaleX: 0.4 }}
               animate={{ opacity: 1, scaleX: 1 }}
@@ -237,7 +237,7 @@ function ClipboardVisual({ accent }: VisualProps) {
     <div className="relative flex w-full max-w-[480px] items-center justify-center gap-6">
       <div className="grid h-28 w-20 place-items-center rounded-2xl border border-ivory/12 bg-ink-900">
         <Smartphone className="h-8 w-8" style={{ color: accent }} />
-        <span className="mt-1 text-[9px] text-ivory/42">Android</span>
+        <span className="mt-1 text-[9px] text-white/[0.42]">Android</span>
       </div>
       <div className="relative h-1 w-24 origin-left rounded-full bg-white/10">
         <motion.div
@@ -249,7 +249,7 @@ function ClipboardVisual({ accent }: VisualProps) {
       </div>
       <div className="grid h-24 w-32 place-items-center rounded-xl border border-ivory/12 bg-ink-900">
         <Monitor className="h-7 w-7" style={{ color: accent }} />
-        <span className="mt-1 text-[9px] text-ivory/42">Chrome ext</span>
+        <span className="mt-1 text-[9px] text-white/[0.42]">Chrome ext</span>
       </div>
       <motion.div
         className="absolute -top-2 rounded-full border px-2 py-1 font-mono text-[9px]"
@@ -264,7 +264,7 @@ function ClipboardVisual({ accent }: VisualProps) {
 }
 
 function InvoiceVisual({ accent }: VisualProps) {
-  const lines = ["Invoice #1042", "Client · Acme Co.", "₹ 4,500.00", "PDF ready"];
+  const lines = ["Invoice #1042", "Client / Acme Co.", "INR 4,500.00", "PDF ready"];
 
   return (
     <div className="w-full max-w-[380px] rounded-[24px] border border-ivory/12 bg-ivory/[0.04] p-5 shadow-rim">
@@ -272,7 +272,7 @@ function InvoiceVisual({ accent }: VisualProps) {
       {lines.map((line, index) => (
         <motion.div
           key={line}
-          className="mb-2 rounded-xl border border-ivory/10 bg-ink-950/60 px-4 py-3 text-sm text-ivory/68"
+          className="mb-2 rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-sm text-white/[0.68]"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.4, duration: 0.5, repeat: Infinity, repeatDelay: 3.2 }}
@@ -307,7 +307,7 @@ function WeatherVisual({ accent }: VisualProps) {
         />
       </motion.div>
       <div className="absolute bottom-0 left-0 right-0 grid grid-cols-3 gap-2">
-        {["28°C", "NASA", "ISRO"].map((label, index) => (
+        {["28 C", "NASA", "ISRO"].map((label, index) => (
           <motion.div
             key={label}
             className="rounded-2xl border border-ivory/10 bg-ink-900/80 p-3 text-center"
@@ -315,7 +315,7 @@ function WeatherVisual({ accent }: VisualProps) {
             transition={{ delay: index * 0.3, duration: 2.5, repeat: Infinity }}
           >
             <Globe className="mx-auto mb-1 h-4 w-4" style={{ color: accent }} />
-            <span className="text-xs text-ivory/62">{label}</span>
+            <span className="text-xs text-white/[0.62]">{label}</span>
           </motion.div>
         ))}
       </div>
@@ -334,7 +334,7 @@ function JournalVisual({ accent }: VisualProps) {
           animate={{ rotateY: [page * -4, page * -4 - 12, page * -4], y: [page * 8, page * 8 - 4, page * 8] }}
           transition={{ delay: page * 0.4, duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <p className="text-[10px] uppercase tracking-wider text-ivory/38">Day {page + 1}</p>
+          <p className="text-[10px] uppercase tracking-wider text-white/[0.38]">Day {page + 1}</p>
           <div className="mt-3 space-y-2">
             <div className="h-2 w-full rounded-full bg-white/10" />
             <div className="h-2 w-4/5 rounded-full bg-white/10" />
@@ -353,7 +353,7 @@ function PortfolioVisual({ accent }: VisualProps) {
         <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-        <span className="ml-2 text-[10px] text-ivory/38">portfolio · live</span>
+        <span className="ml-2 text-[10px] text-white/[0.38]">portfolio / live</span>
       </div>
       <div className="relative h-[260px] overflow-hidden rounded-xl border border-ivory/10 bg-ink-950">
         <motion.div

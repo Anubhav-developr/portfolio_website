@@ -1,4 +1,5 @@
 import { AmbientStage } from "@/components/AmbientStage";
+import { AchievementsSection } from "@/components/AchievementsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Footer } from "@/components/Footer";
@@ -18,7 +19,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: identity.name,
-    jobTitle: "Full Stack Developer",
+    jobTitle: "Full Stack Developer, Android Engineer",
     url: identity.website,
     sameAs: [identity.github, identity.linkedin, identity.codechef],
     description: identity.tagline,
@@ -48,6 +49,7 @@ export default function Home() {
         <ProfileSection />
         <ProjectsSection />
         <TimelineSection />
+        <AchievementsSection />
         <ContactSection />
       </main>
       <Footer />

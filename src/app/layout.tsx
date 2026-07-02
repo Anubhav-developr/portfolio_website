@@ -12,17 +12,20 @@ export const metadata: Metadata = {
     template: "%s | Anubhav Mishra"
   },
   description:
-    "Portfolio of Anubhav Mishra — Full Stack Developer, GDS ABPM, CS Graduate, and CodeChef global rank 24 from Shahjahanpur, Uttar Pradesh, India.",
+    "Portfolio of Anubhav Mishra, a Full Stack Developer, GDS ABPM, CS Graduate, and CodeChef global rank 24 from Shahjahanpur, Uttar Pradesh, India.",
   keywords: [
     "Anubhav Mishra",
     "Android Engineer",
+    "Full Stack Developer",
     "Java Android Developer",
     "MVVM",
     "Room",
     "Hilt",
+    "Firebase",
     "Python",
     "MySQL",
-    "Compiler Design"
+    "Compiler Design",
+    "CodeChef"
   ],
   authors: [{ name: "Anubhav Mishra" }],
   creator: "Anubhav Mishra",
@@ -57,7 +60,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#070807",
+  themeColor: "#020304",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -71,7 +74,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div aria-hidden="true" className="noise-overlay" />
+        {children}
+      </body>
     </html>
   );
 }

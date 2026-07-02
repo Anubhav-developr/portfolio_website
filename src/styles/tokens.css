@@ -2,17 +2,57 @@
   --font-display: "Clash Display", "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-sans: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  --bg: #070807;
-  --surface: #101412;
-  --surface-strong: #151a18;
-  --line: rgba(244, 240, 232, 0.12);
-  --text: #f4f0e8;
-  --text-soft: #a9afa8;
-  --teal: #4dd4bd;
-  --citron: #c9ff64;
-  --copper: #c47b4d;
+
+  /* Base */
+  --bg-void: #020304;
+  --bg-deep: #050709;
+  --bg-surface: #0a0d12;
+  --bg-raised: #0f1318;
+  --bg-overlay: #141920;
+
+  /* Borders */
+  --border-dim: rgba(255, 255, 255, 0.04);
+  --border-soft: rgba(255, 255, 255, 0.07);
+  --border-mid: rgba(255, 255, 255, 0.10);
+  --border-accent: rgba(99, 136, 255, 0.25);
+
+  /* Text */
+  --text-primary: rgba(255, 255, 255, 0.94);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.28);
+  --text-ghost: rgba(255, 255, 255, 0.12);
+
+  /* Accent system */
+  --accent-blue: #6388ff;
+  --accent-violet: #a78bfa;
+  --accent-cyan: #38bdf8;
+  --accent-green: #34d399;
+  --accent-glow: rgba(99, 136, 255, 0.15);
+
+  /* Gradients */
+  --grad-hero:
+    radial-gradient(ellipse at 20% 50%, rgba(56, 97, 251, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(124, 58, 237, 0.07) 0%, transparent 50%);
+  --grad-card: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --grad-name: linear-gradient(135deg, #6388ff 0%, #a78bfa 50%, #38bdf8 100%);
+
+  /* Spacing rhythm */
+  --section-gap: 140px;
+  --card-radius: 16px;
+  --pill-radius: 100px;
+
+  /* Backward-compatible aliases used by existing components. */
+  --bg: var(--bg-void);
+  --surface: var(--bg-surface);
+  --surface-strong: var(--bg-raised);
+  --line: var(--border-soft);
+  --text: var(--text-primary);
+  --text-soft: var(--text-secondary);
+  --teal: var(--accent-cyan);
+  --citron: var(--accent-blue);
+  --copper: var(--accent-violet);
   --radius-sm: 8px;
   --radius-md: 16px;
-  --radius-lg: 28px;
+  --radius-lg: 24px;
   --max-width: 1180px;
 }

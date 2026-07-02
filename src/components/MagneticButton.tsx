@@ -48,8 +48,9 @@ export function MagneticButton<T extends ElementType = "a">({
         className={cn(
           "magnetic-target group inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-5 py-3 text-sm font-semibold tracking-normal transition",
           variant === "primary" &&
-            "bg-ivory text-ink-950 shadow-[0_16px_50px_rgba(244,240,232,0.14)] hover:bg-citron",
-          variant === "ghost" && "border border-ivory/14 bg-white/[0.035] text-ivory hover:border-teal/55",
+            "bg-[var(--accent-blue)] text-white shadow-[0_0_32px_rgba(99,136,255,0.25)] hover:scale-[1.02] hover:shadow-[0_0_48px_rgba(99,136,255,0.4)]",
+          variant === "ghost" &&
+            "border border-white/[0.12] bg-transparent text-[var(--text-secondary)] hover:border-white/25 hover:text-[var(--text-primary)]",
           className
         )}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
