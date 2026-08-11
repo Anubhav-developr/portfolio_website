@@ -42,6 +42,7 @@ export const identity = {
 export const navItems = [
   { label: "Profile", href: "#profile" },
   { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Proof", href: "#achievements" },
   { label: "Contact", href: "#contact" }

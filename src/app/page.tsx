@@ -8,6 +8,8 @@ import { Navigation } from "@/components/Navigation";
 import { ProfileSection } from "@/components/ProfileSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { SkillsSection } from "@/components/SkillsSection";
+import { SpaceSceneLayer } from "@/components/SpaceSceneLayer";
 import { StatsRibbon } from "@/components/StatsRibbon";
 import { StartupIntro } from "@/components/StartupIntro";
 import { TimelineSection } from "@/components/TimelineSection";
@@ -35,6 +37,7 @@ export default function Home() {
   return (
     <MotionPreferenceProvider>
       <StartupIntro />
+      <SpaceSceneLayer />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -43,11 +46,12 @@ export default function Home() {
       <CustomCursor />
       <AmbientStage />
       <Navigation />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
         <StatsRibbon />
         <ProfileSection />
         <ProjectsSection />
+        <SkillsSection />
         <TimelineSection />
         <AchievementsSection />
         <ContactSection />

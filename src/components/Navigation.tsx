@@ -11,38 +11,36 @@ export function Navigation() {
   const [active, setActive] = useState(navItems[0]?.href ?? "#profile");
 
   useEffect(() => {
-    const onScroll = () => setElevated(window.scrollY > 60);
+    const onScroll = () => {
+      setElevated(window.scrollY > 60);
+
+      const checkpoint = window.scrollY + window.innerHeight * 0.38;
+      let nextActive = navItems[0]?.href ?? "#profile";
+
+      navItems.forEach((item) => {
+        const section = document.getElementById(item.href.replace("#", ""));
+        if (section && section.offsetTop <= checkpoint) {
+          nextActive = item.href;
+        }
+      });
+
+      const reachedBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+
+      if (reachedBottom) {
+        nextActive = navItems[navItems.length - 1]?.href ?? nextActive;
+      }
+
+      setActive(nextActive);
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const sections = navItems
-      .map((item) => document.getElementById(item.href.replace("#", "")))
-      .filter(Boolean) as HTMLElement[];
-
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target.id) {
-          setActive(`#${visible.target.id}`);
-        }
-      },
-      { threshold: [0.25, 0.45], rootMargin: "-28% 0px -48% 0px" }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <header className="fixed left-1/2 top-5 z-[100] w-[calc(100%-32px)] max-w-[720px] -translate-x-1/2">
+    <header className="fixed left-1/2 top-5 z-[100] w-[calc(100%-32px)] max-w-[780px] -translate-x-1/2">
       <nav
         aria-label="Primary navigation"
         className={cn(

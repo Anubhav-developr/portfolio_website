@@ -20,7 +20,7 @@ function updateGlow(event: MouseEvent<HTMLElement>) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="relative bg-[var(--bg-void)] py-24 sm:py-32">
+    <section id="projects" className="relative bg-[rgba(2,3,4,0.68)] py-24 sm:py-32">
       <div className="section-shell">
         <SectionHeader
           eyebrow="Cinematic showcases"

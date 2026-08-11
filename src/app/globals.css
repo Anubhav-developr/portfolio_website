@@ -85,6 +85,49 @@ button {
   margin-inline: auto;
 }
 
+.space-scene-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(99, 136, 255, 0.10), transparent 34%),
+    radial-gradient(circle at 78% 12%, rgba(167, 139, 250, 0.08), transparent 30%),
+    linear-gradient(180deg, #020304 0%, #050812 50%, #020304 100%);
+}
+
+.space-scene-layer canvas {
+  opacity: 0.76;
+}
+
+.space-scene-fallback {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 18% 20%, rgba(99, 136, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 75% 70%, rgba(56, 189, 248, 0.10), transparent 28%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.26) 1px, transparent 0);
+  background-position:
+    center,
+    center,
+    0 0;
+  background-size:
+    100% 100%,
+    100% 100%,
+    92px 92px;
+  opacity: 0.82;
+}
+
+.space-scene-fallback::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: radial-gradient(circle at 1px 1px, rgba(99, 136, 255, 0.32) 1px, transparent 0);
+  background-size: 137px 137px;
+  animation: starfield-drift 42s linear infinite;
+}
+
 .noise-overlay {
   position: fixed;
   inset: 0;
@@ -248,7 +291,8 @@ button {
 }
 
 .hero-bg-video {
-  filter: contrast(1.1) saturate(1.18);
+  opacity: 0.46;
+  filter: contrast(1.08) saturate(1.12);
 }
 
 .hero-mobile-poster {
@@ -399,6 +443,15 @@ button {
   }
 }
 
+@keyframes starfield-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-137px, 137px, 0);
+  }
+}
+
 @media (min-width: 768px) {
   .hero-mobile-poster {
     background-image: none;
@@ -418,6 +471,11 @@ button {
   .cursor-ring,
   .cursor-dot,
   .hero-bg-video {
+    display: none;
+  }
+
+  .space-scene-layer canvas,
+  .space-scene-fallback::after {
     display: none;
   }
 
