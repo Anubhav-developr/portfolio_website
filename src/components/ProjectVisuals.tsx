@@ -8,7 +8,7 @@ import type { Project, ProjectTone } from "@/types/portfolio";
 type VisualProps = { accent: string };
 
 export function ProjectVisual({ project }: { project: Project }) {
-  const visuals: Record<ProjectTone, ReactNode> = {
+  const visuals: Record<string, ReactNode> = {
     pulse: <ExamPulseVisual accent={project.accent} />,
     postoffice: <PostOfficeVisual accent={project.accent} />,
     tree: <MinimaxVisual accent={project.accent} />,
@@ -18,7 +18,7 @@ export function ProjectVisual({ project }: { project: Project }) {
     weather: <WeatherVisual accent={project.accent} />,
     journal: <JournalVisual accent={project.accent} />,
     portfolio: <PortfolioVisual accent={project.accent} />,
-    "myth-buster": <CofWahVisual accent={project.accent} />,
+    "myth-buster" : <CofWahVisual accent={project.accent} />,
     institutional: <RecSonbhadraVisual accent={project.accent} />,
     experimental: <CocamSKVisual accent={project.accent} />,
     pixel: <PixeyEditorShowcase accent={project.accent} />,
@@ -1002,6 +1002,7 @@ function PixeyEditorShowcase({ accent }: VisualProps) {
     let cancelled = false;
 
     function drawGrid(progress: number) {
+      if (!ctx) return;
       ctx.clearRect(0, 0, cssW, cssH);
 
       const totalCells = GRID_COLS * GRID_ROWS;
@@ -1033,6 +1034,7 @@ function PixeyEditorShowcase({ accent }: VisualProps) {
       paintedCells.current.set(`${col},${row}`, color);
       const x = col * cellW;
       const y = row * cellH;
+      if (!ctx) return;
       ctx.fillStyle = color;
       ctx.fillRect(x, y, cellW - 1, cellH - 1);
     }
@@ -1041,6 +1043,7 @@ function PixeyEditorShowcase({ accent }: VisualProps) {
       paintedCells.current.delete(`${col},${row}`);
       const x = col * cellW;
       const y = row * cellH;
+      if (!ctx) return;
       ctx.clearRect(x, y, cellW - 1, cellH - 1);
       ctx.fillStyle = "rgba(255,255,255,0.04)";
       ctx.fillRect(x, y, cellW - 1, cellH - 1);

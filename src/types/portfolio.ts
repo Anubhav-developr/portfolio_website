@@ -9,7 +9,12 @@ export type ProjectTone =
   | "invoice"
   | "weather"
   | "journal"
-  | "portfolio";
+  | "portfolio"
+  | "myth-buster"
+  | "institutional"
+  | "experimental"
+  | "pixel"
+  | "codechef";
 
 export type Project = {
   name: string;
