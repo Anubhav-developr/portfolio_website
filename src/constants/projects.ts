@@ -9,7 +9,7 @@ export const projects: Project[] = [
     longDescription:
       "Built for fast exam prep loops with Room persistence, MPAndroidChart analytics, background sync, and a clean codebase ready for Google Play deployment.",
     tech: ["Java", "MVVM", "Room", "Hilt", "WorkManager", "Lottie"],
-    proof: ["Offline-first architecture", "Dependency-injected MVVM", "Analytics-ready UX"],
+    proof: ["Offline-first architecture", "Dependency-injected MVVM", "Analytics-ready UX"], 
     tone: "pulse",
     accent: "#6388ff",
     github: "https://github.com/Anubhav-developr/MY_College-AKTU-MCQer"
@@ -118,5 +118,24 @@ export const projects: Project[] = [
     accent: "#38bdf8",
     github: "https://github.com/Anubhav-developr/portfolio_website",
     liveUrl: "https://portfolio-website-anubhavdeveloprs-projects.vercel.app"
-  }
+  },
+{
+  name: "CofWah – COVID-19 Awareness Platform",
+  kicker: "Healthcare Information Experience",
+  description:
+    "A Hindi-language web application created to spread COVID-19 awareness, counter misinformation, and make verified healthcare resources easier to access.",
+  longDescription:
+    "CofWah is a socially driven health-awareness platform built for Hindi-speaking audiences. It simplifies complex COVID-19 information into accessible, user-friendly content, helping users understand common myths, safety practices, and vaccination resources without confusion. The experience is designed to feel trustworthy, calm, and clear, with a modern interface that supports public education through myth-busting content and vaccine discovery features.",
+  tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "CoWIN API"],
+  proof: [
+    "Myth-busting content design",
+    "Hindi-first user experience",
+    "Vaccination resource discovery",
+    "Accessible public-health storytelling"
+  ],
+  tone: "myth-buster",
+  accent: "#38bdf8",
+  github: "https://github.com/Anubhav-developr/cofwah",
+  liveUrl: "https://cofwah.vercel.app/"
+}
 ];

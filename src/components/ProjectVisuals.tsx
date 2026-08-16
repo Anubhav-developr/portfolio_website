@@ -17,7 +17,8 @@ export function ProjectVisual({ project }: { project: Project }) {
     invoice: <InvoiceVisual accent={project.accent} />,
     weather: <WeatherVisual accent={project.accent} />,
     journal: <JournalVisual accent={project.accent} />,
-    portfolio: <PortfolioVisual accent={project.accent} />
+    portfolio: <PortfolioVisual accent={project.accent} />,
+    "myth-buster": <CofWahVisual accent={project.accent} />,
   };
 
   return (
@@ -370,6 +371,245 @@ function PortfolioVisual({ accent }: VisualProps) {
         />
         <ExternalLink className="absolute bottom-4 right-4 h-4 w-4 text-ivory/30" />
       </div>
+    </div>
+  );
+}
+
+function CofWahVisual({ accent }: VisualProps) {
+  const myths = [
+    {
+      myth: "गरम पानी पीने से वायरस खत्म हो जाता है?",
+      answer: "Fact checked",
+      status: "FALSE"
+    },
+    {
+      myth: "क्या वैक्सीन सुरक्षित है?",
+      answer: "Verified information",
+      status: "TRUE"
+    },
+    {
+      myth: "COVID-19 की जानकारी हिंदी में",
+      answer: "Trusted awareness",
+      status: "INFO"
+    }
+  ];
+
+  return (
+    <div className="relative w-full max-w-[540px]">
+      {/* Floating background particles */}
+      {[0, 1, 2, 3, 4].map((particle) => (
+        <motion.span
+          key={particle}
+          className="absolute h-2 w-2 rounded-full"
+          style={{
+            background: accent,
+            left: `${12 + particle * 18}%`,
+            top: `${12 + (particle % 3) * 28}%`,
+            boxShadow: `0 0 14px ${accent}`
+          }}
+          animate={{
+            y: [0, -14, 0],
+            opacity: [0.25, 0.9, 0.25],
+            scale: [0.8, 1.2, 0.8]
+          }}
+          transition={{
+            duration: 2.8 + particle * 0.35,
+            delay: particle * 0.3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+
+      {/* Main application window */}
+      <motion.div
+        className="relative z-10 overflow-hidden rounded-[28px] border border-white/[0.14] bg-ink-900/95 p-4 shadow-velvet"
+        initial={{ opacity: 0, y: 22, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        whileHover={{ y: -6, scale: 1.015 }}
+      >
+        {/* Browser header */}
+        <div className="mb-4 flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
+
+          <motion.span
+            className="ml-2 text-[10px] text-white/[0.38]"
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2.4, repeat: Infinity }}
+          >
+            cofwah / awareness
+          </motion.span>
+        </div>
+
+        {/* App header */}
+        <div
+          className="mb-4 rounded-2xl border border-white/10 p-4"
+          style={{
+            background: `linear-gradient(135deg, ${accent}25, transparent)`
+          }}
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p
+                className="text-lg font-black tracking-tight"
+                style={{ color: accent }}
+              >
+                CofWah
+              </p>
+
+              <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/[0.42]">
+                COVID-19 myth buster
+              </p>
+            </div>
+
+            <motion.div
+              className="grid h-10 w-10 place-items-center rounded-xl border"
+              style={{
+                borderColor: `${accent}66`,
+                background: `${accent}18`
+              }}
+              animate={{
+                rotate: [0, -8, 8, 0],
+                scale: [1, 1.08, 1]
+              }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <span className="text-lg">✓</span>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Myth cards */}
+        <div className="space-y-3">
+          {myths.map((item, index) => (
+            <motion.div
+              key={item.myth}
+              className="rounded-2xl border border-white/10 bg-white/[0.045] p-3"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: 0.35 + index * 0.35,
+                duration: 0.55,
+                repeat: Infinity,
+                repeatDelay: 4.5
+              }}
+            >
+              <div className="flex items-start gap-3">
+                <motion.div
+                  className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg text-xs font-black"
+                  style={{
+                    color: accent,
+                    background: `${accent}20`
+                  }}
+                  animate={{
+                    scale: [1, 1.12, 1],
+                    rotate: [0, 4, 0]
+                  }}
+                  transition={{
+                    delay: index * 0.4,
+                    duration: 2,
+                    repeat: Infinity
+                  }}
+                >
+                  ?
+                </motion.div>
+
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] leading-4 text-white/[0.72]">
+                    {item.myth}
+                  </p>
+
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="text-[9px] text-white/[0.38]">
+                      {item.answer}
+                    </span>
+
+                    <motion.span
+                      className="rounded-full border px-2 py-1 text-[8px] font-bold tracking-wider"
+                      style={{
+                        color: accent,
+                        borderColor: `${accent}55`,
+                        background: `${accent}12`
+                      }}
+                      animate={{
+                        opacity: [0.55, 1, 0.55]
+                      }}
+                      transition={{
+                        duration: 1.8,
+                        delay: index * 0.3,
+                        repeat: Infinity
+                      }}
+                    >
+                      {item.status}
+                    </motion.span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Vaccine finder button */}
+        <motion.div
+          className="mt-4 flex items-center justify-between rounded-2xl px-4 py-3"
+          style={{
+            background: accent,
+            color: "#101410"
+          }}
+          animate={{
+            boxShadow: [
+              `0 0 0px ${accent}`,
+              `0 0 18px ${accent}88`,
+              `0 0 0px ${accent}`
+            ]
+          }}
+          transition={{
+            duration: 2.2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <span className="text-[10px] font-black uppercase tracking-wider">
+            Find vaccine centre
+          </span>
+
+          <motion.span
+            className="text-base font-black"
+            animate={{ x: [0, 4, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity }}
+          >
+            →
+          </motion.span>
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom status indicator */}
+      <motion.div
+        className="absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border px-3 py-1.5 font-mono text-[9px] whitespace-nowrap"
+        style={{
+          color: accent,
+          borderColor: `${accent}66`,
+          background: "#111714"
+        }}
+        animate={{
+          y: [0, -5, 0],
+          opacity: [0.65, 1, 0.65]
+        }}
+        transition={{
+          duration: 2.3,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        ✓ information verified in Hindi
+      </motion.div>
     </div>
   );
 }
