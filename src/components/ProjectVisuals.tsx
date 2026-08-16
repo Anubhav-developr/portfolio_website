@@ -1,7 +1,7 @@
 "use client";
 
-import { type ReactNode, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { type ReactNode, useEffect, useState , useRef} from "react";
+import { motion,useMotionValue, useSpring, useTransform,useAnimation ,useReducedMotion,AnimatePresence} from "framer-motion";
 import { ArrowRight, Code2, ExternalLink, Globe, Landmark, Monitor, Smartphone } from "lucide-react";
 import type { Project, ProjectTone } from "@/types/portfolio";
 
@@ -19,6 +19,10 @@ export function ProjectVisual({ project }: { project: Project }) {
     journal: <JournalVisual accent={project.accent} />,
     portfolio: <PortfolioVisual accent={project.accent} />,
     "myth-buster": <CofWahVisual accent={project.accent} />,
+    institutional: <RecSonbhadraVisual accent={project.accent} />,
+    experimental: <CocamSKVisual accent={project.accent} />,
+    pixel: <PixeyEditorShowcase accent={project.accent} />,
+    codechef: <CodeChefFinderShowcase accent={project.accent} />,
   };
 
   return (
@@ -613,3 +617,851 @@ function CofWahVisual({ accent }: VisualProps) {
     </div>
   );
 }
+
+
+
+
+
+function RecSonbhadraVisual( { accent }:VisualProps) {
+  const modules = ["About", "Circulars", "Departments", "Placements", "Contact"];
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+
+  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-10, 10]), {
+    stiffness: 220,
+    damping: 24,
+    mass: 0.7,
+  });
+
+  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [10, -10]), {
+    stiffness: 220,
+    damping: 24,
+    mass: 0.7,
+  });
+
+  const glowX = useSpring(useTransform(mx, [-0.5, 0.5], ["20%", "80%"]), {
+    stiffness: 180,
+    damping: 20,
+  });
+
+  const glowY = useSpring(useTransform(my, [-0.5, 0.5], ["20%", "80%"]), {
+    stiffness: 180,
+    damping: 20,
+  });
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mx.set(x);
+    my.set(y);
+  };
+
+  const reset = () => {
+    mx.set(0);
+    my.set(0);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative h-full min-h-[420px] w-full [perspective:1400px]"
+      onMouseMove={handleMove}
+      onMouseLeave={reset}
+    >
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="relative h-full overflow-hidden rounded-[32px] border border-white/10 bg-[#06101d]/90 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+      >
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute -inset-[1px] rounded-[32px] opacity-70"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(96,165,250,0.24), rgba(56,189,248,0.1), rgba(167,139,250,0.16))",
+          }}
+        />
+
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30"
+          style={{
+            background:
+              "linear-gradient(rgba(96,165,250,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.10) 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+            transform: "translateZ(10px)",
+          }}
+        />
+
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(220px circle at var(--gx) var(--gy), rgba(56,189,248,0.22), transparent 60%)",
+            ["--gx" as string]: glowX,
+            ["--gy" as string]: glowY,
+          }}
+        />
+
+        <motion.div
+          initial={{ x: "-120%", opacity: 0 }}
+          whileInView={{ x: "130%", opacity: [0, 1, 0] }}
+          viewport={{ once: true }}
+          transition={{ duration: 2.1, delay: 0.4, ease: "easeInOut" }}
+          className="pointer-events-none absolute inset-y-0 w-28 bg-gradient-to-r from-transparent via-cyan-300/18 to-transparent blur-2xl"
+          style={{ transform: "translateZ(48px)" }}
+        />
+
+        <div className="relative z-10 flex h-full flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.15 }}
+            className="flex items-start justify-between gap-4"
+            style={{ transform: "translateZ(70px)" }}
+          >
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.28em] text-cyan-200/70">
+                Official Institutional Platform
+              </p>
+              <h3 className="mt-3 max-w-[16ch] text-2xl font-semibold tracking-tight text-white">
+                REC Sonbhadra
+              </h3>
+              <p className="mt-2 max-w-[28ch] text-sm leading-6 text-white/58">
+                Public-facing college infrastructure with structured academic communication.
+              </p>
+            </div>
+
+            <div className="rounded-full border border-cyan-300/20 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-cyan-100/70">
+              Private Repo
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08, delayChildren: 0.22 } },
+            }}
+            className="relative mt-10 grid grid-cols-6 gap-3"
+            style={{ transform: "translateZ(90px)" }}
+          >
+            {modules.map((item, index) => {
+              const wide = index === 0 || index === 3;
+              return (
+                <motion.div
+                  key={item}
+                  variants={{
+                    hidden: { opacity: 0, y: 18, scale: 0.94 },
+                    show: { opacity: 1, y: 0, scale: 1 },
+                  }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className={`relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-3 backdrop-blur-xl ${
+                    wide ? "col-span-3" : "col-span-3 md:col-span-2"
+                  }`}
+                >
+                  <div className="mb-8 flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-white/35">
+                      Module
+                    </span>
+                    <span className="h-2 w-2 rounded-full bg-cyan-300/70 shadow-[0_0_18px_rgba(103,232,249,0.8)]" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-white/88">{item}</p>
+                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/8">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${68 + index * 6}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.35 + index * 0.05 }}
+                        className="h-full rounded-full bg-gradient-to-r from-sky-400 via-cyan-300 to-indigo-300"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent" />
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="relative mt-8 grid grid-cols-3 gap-3"
+            style={{ transform: "translateZ(110px)" }}
+          >
+            {[
+              { label: "Identity", value: "Official" },
+              { label: "Audience", value: "Students" },
+              { label: "System", value: "Live Web" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-md"
+              >
+                <p className="text-[10px] uppercase tracking-[0.24em] text-white/35">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm font-medium text-white/85">{item.value}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+
+function CocamSKVisual({ accent }: VisualProps) {
+  const flash = useAnimation();
+  const shutter = useAnimation();
+  const thumb = useAnimation();
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loop() {
+      while (mounted) {
+        await new Promise((r) => setTimeout(r, 1400));
+        if (!mounted) return;
+        await shutter.start({ scale: 0.82, transition: { duration: 0.12 } });
+        if (!mounted) return;
+        await flash.start({ opacity: [0, 1, 0], transition: { duration: 0.35 } });
+        if (!mounted) return;
+        await shutter.start({ scale: 1, transition: { duration: 0.25 } });
+        if (!mounted) return;
+        thumb.start({
+          opacity: [0, 1, 1, 0],
+          scale: [0.7, 1, 1, 0.9],
+          transition: { duration: 1.6, times: [0, 0.15, 0.75, 1] },
+        });
+        await new Promise((r) => setTimeout(r, 1900));
+      }
+    }
+
+    loop();
+    return () => {
+      mounted = false;
+    };
+  }, [flash, shutter, thumb]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 26, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex min-h-[420px] w-full max-w-[440px] flex-col overflow-hidden rounded-[32px] border border-white/10 bg-[#04070d] p-5 shadow-2xl"
+    >
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2 rounded-full border border-red-400/20 bg-red-400/10 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-red-200">
+          <motion.span
+            animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.15, 1] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="h-2 w-2 rounded-full bg-red-400"
+          />
+          Live
+        </div>
+        <div className="text-[10px] uppercase tracking-[0.3em] text-cyan-100/45">
+          Capture
+        </div>
+      </div>
+
+      <div className="relative flex-1 overflow-hidden rounded-[28px] border border-white/10 bg-white/5">
+        <div className="absolute left-5 top-5 h-9 w-9 border-l-2 border-t-2 border-cyan-300" />
+        <div className="absolute right-5 top-5 h-9 w-9 border-r-2 border-t-2 border-cyan-300" />
+        <div className="absolute bottom-5 left-5 h-9 w-9 border-b-2 border-l-2 border-cyan-300" />
+        <div className="absolute bottom-5 right-5 h-9 w-9 border-b-2 border-r-2 border-cyan-300" />
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            initial={{ scale: 1 }}
+            animate={shutter}
+            className="relative flex h-32 w-32 items-center justify-center rounded-full border-4 border-cyan-300 bg-white/10"
+          >
+            <svg
+              width="46"
+              height="46"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              className="text-cyan-100"
+            >
+              <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
+              <circle cx="12" cy="13" r="3.4" />
+            </svg>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={flash}
+          className="pointer-events-none absolute inset-0 bg-white"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={thumb}
+          className="absolute bottom-6 right-6 h-16 w-12 rounded-lg border-2 border-white/40 bg-cyan-200"
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+const GRID_COLS = 24;
+const GRID_ROWS = 18;
+
+type DemoStep =
+  | { tool: "draw"; cells: [number, number][] }
+  | { tool: "rect"; from: [number, number]; to: [number, number] }
+  | { tool: "fill"; origin: [number, number]; cells: [number, number][] }
+  | { tool: "pick"; cell: [number, number] }
+  | { tool: "undo" };
+
+const PALETTE = ["#22d3ee", "#f472b6", "#facc15", "#a3e635", "#38bdf8"];
+
+const DEMO_SCRIPT: DemoStep[] = [
+  { tool: "draw", cells: [[8,4],[9,4],[10,4],[8,5],[10,5],[8,6],[9,6],[10,6]] },
+  { tool: "rect", from: [13, 4], to: [17, 8] },
+  { tool: "pick", cell: [9, 5] },
+  {
+    tool: "fill",
+    origin: [14, 6],
+    cells: [[13,5],[14,5],[15,5],[16,5],[13,6],[14,6],[15,6],[16,6],[13,7],[14,7],[15,7],[16,7]],
+  },
+  { tool: "draw", cells: [[5,10],[6,10],[7,10],[5,11],[7,11],[5,12],[6,12],[7,12]] },
+  { tool: "undo" },
+  { tool: "draw", cells: [[5,10],[6,10],[7,10],[5,11],[7,11],[5,12],[6,12],[7,12]] },
+];
+
+function PixeyEditorShowcase({ accent }: VisualProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState<"assembling" | "interactive" | "idle">("assembling");
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0, visible: false });
+  const [activeTool, setActiveTool] = useState<string>("draw");
+  const [visible, setVisible] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const paintedCells = useRef<Map<string, string>>(new Map());
+  const historyRef = useRef<Map<string, string>[]>([]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cssW = canvas.clientWidth;
+    const cssH = canvas.clientHeight;
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
+    ctx.scale(dpr, dpr);
+
+    const cellW = cssW / GRID_COLS;
+    const cellH = cssH / GRID_ROWS;
+
+    let raf = 0;
+    let assembled = new Set<string>();
+    let cancelled = false;
+
+    function drawGrid(progress: number) {
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const totalCells = GRID_COLS * GRID_ROWS;
+      const visibleCount = Math.floor(totalCells * progress);
+
+      for (let i = 0; i < visibleCount; i++) {
+        const col = i % GRID_COLS;
+        const row = Math.floor(i / GRID_COLS);
+        const key = `${col},${row}`;
+        assembled.add(key);
+        const x = col * cellW;
+        const y = row * cellH;
+        ctx.fillStyle = "rgba(255,255,255,0.04)";
+        ctx.fillRect(x, y, cellW - 1, cellH - 1);
+        ctx.strokeStyle = "rgba(255,255,255,0.06)";
+        ctx.strokeRect(x, y, cellW - 1, cellH - 1);
+      }
+
+      paintedCells.current.forEach((color, key) => {
+        const [col, row] = key.split(",").map(Number);
+        const x = col * cellW;
+        const y = row * cellH;
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, cellW - 1, cellH - 1);
+      });
+    }
+
+    function paintCell(col: number, row: number, color: string) {
+      paintedCells.current.set(`${col},${row}`, color);
+      const x = col * cellW;
+      const y = row * cellH;
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, cellW - 1, cellH - 1);
+    }
+
+    function eraseCell(col: number, row: number) {
+      paintedCells.current.delete(`${col},${row}`);
+      const x = col * cellW;
+      const y = row * cellH;
+      ctx.clearRect(x, y, cellW - 1, cellH - 1);
+      ctx.fillStyle = "rgba(255,255,255,0.04)";
+      ctx.fillRect(x, y, cellW - 1, cellH - 1);
+    }
+
+    function snapshotHistory() {
+      historyRef.current.push(new Map(paintedCells.current));
+    }
+
+    async function wait(ms: number) {
+      return new Promise<void>((resolve) => {
+        const t = setTimeout(resolve, ms);
+        if (cancelled) clearTimeout(t);
+      });
+    }
+
+    async function assemble() {
+      const duration = reducedMotion ? 200 : 900;
+      const start = performance.now();
+      return new Promise<void>((resolve) => {
+        function step(now: number) {
+          if (cancelled) return resolve();
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          drawGrid(eased);
+          if (t < 1) {
+            raf = requestAnimationFrame(step);
+          } else {
+            resolve();
+          }
+        }
+        raf = requestAnimationFrame(step);
+      });
+    }
+
+    async function moveCursor(col: number, row: number) {
+      const x = col * cellW + cellW / 2;
+      const y = row * cellH + cellH / 2;
+      setCursorPos({ x, y, visible: true });
+      await wait(reducedMotion ? 0 : 220);
+    }
+
+    async function runStep(step: DemoStep, colorIndex: number) {
+      const color = PALETTE[colorIndex % PALETTE.length];
+
+      if (step.tool === "draw") {
+        setActiveTool("draw");
+        snapshotHistory();
+        for (const [col, row] of step.cells) {
+          if (cancelled) return;
+          await moveCursor(col, row);
+          paintCell(col, row, color);
+          await wait(reducedMotion ? 0 : 60);
+        }
+      }
+
+      if (step.tool === "rect") {
+        setActiveTool("rectangle");
+        snapshotHistory();
+        const [c1, r1] = step.from;
+        const [c2, r2] = step.to;
+        await moveCursor(c1, r1);
+        await wait(150);
+        await moveCursor(c2, r2);
+        for (let col = c1; col <= c2; col++) {
+          for (let row = r1; row <= r2; row++) {
+            const isEdge = col === c1 || col === c2 || row === r1 || row === r2;
+            if (isEdge) paintCell(col, row, color);
+          }
+        }
+      }
+
+      if (step.tool === "pick") {
+        setActiveTool("pick color");
+        const [col, row] = step.cell;
+        await moveCursor(col, row);
+        await wait(reducedMotion ? 0 : 300);
+      }
+
+      if (step.tool === "fill") {
+        setActiveTool("fill");
+        snapshotHistory();
+        const [col, row] = step.origin;
+        await moveCursor(col, row);
+        for (const [c, r] of step.cells) {
+          if (cancelled) return;
+          paintCell(c, r, color);
+          await wait(reducedMotion ? 0 : 25);
+        }
+      }
+
+      if (step.tool === "undo") {
+        setActiveTool("undo");
+        const previous = historyRef.current.pop();
+        if (previous) {
+          const currentKeys = new Set(paintedCells.current.keys());
+          previous.forEach((_, key) => currentKeys.delete(key));
+          currentKeys.forEach((key) => {
+            const [c, r] = key.split(",").map(Number);
+            eraseCell(c, r);
+          });
+          paintedCells.current = new Map(previous);
+          drawGrid(1);
+        }
+        await wait(reducedMotion ? 0 : 400);
+      }
+    }
+
+    async function run() {
+      await assemble();
+      if (cancelled) return;
+      setPhase("interactive");
+
+      for (let i = 0; i < DEMO_SCRIPT.length; i++) {
+        if (cancelled) return;
+        await runStep(DEMO_SCRIPT[i], i);
+        await wait(reducedMotion ? 0 : 250);
+      }
+
+      if (cancelled) return;
+      setCursorPos((p) => ({ ...p, visible: false }));
+      setPhase("idle");
+    }
+
+    run();
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+    };
+  }, [visible, reducedMotion]);
+
+  return (
+    <motion.div
+      ref={containerRef}
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex min-h-[420px] w-full max-w-[520px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#05060a] p-5 shadow-2xl"
+    >
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">
+            Canvas Editor
+          </p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-white">
+            PIXEy-EDITOR
+          </h3>
+        </div>
+        <div
+          className="flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.24em]"
+          style={{ borderColor: `${accent}44`, color: accent }}
+        >
+          <span
+            className="h-2 w-2 rounded-full"
+            style={{ background: accent }}
+          />
+          {phase === "assembling" ? "Building" : activeTool}
+        </div>
+      </div>
+
+      <div className="relative flex-1 overflow-hidden rounded-2xl border border-white/10 bg-black/40">
+        <canvas
+          ref={canvasRef}
+          className="h-full w-full"
+          style={{ imageRendering: "pixelated" }}
+        />
+
+        {cursorPos.visible && (
+          <motion.div
+            className="pointer-events-none absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-sm border-2"
+            style={{ borderColor: accent }}
+            animate={{ left: cursorPos.x, top: cursorPos.y }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+          />
+        )}
+      </div>
+
+      <div className="mt-4 flex items-center gap-2">
+        {PALETTE.map((color) => (
+          <span
+            key={color}
+            className="h-4 w-4 rounded-sm border border-white/20"
+            style={{ background: color }}
+          />
+        ))}
+        <span className="ml-auto text-[10px] uppercase tracking-[0.2em] text-white/30">
+          Vanilla JS · Canvas API
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+
+
+
+
+
+
+const HANDLE = "anubhav";
+
+type Stage = "idle" | "typing" | "ready" | "resolving" | "profile" | "reset";
+
+function CodeChefFinderShowcase({ accent }: VisualProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [stage, setStage] = useState<Stage>("idle");
+  const [typed, setTyped] = useState("");
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    let cancelled = false;
+
+    async function wait(ms: number) {
+      return new Promise<void>((r) => setTimeout(r, cancelled ? 0 : ms));
+    }
+
+    async function run() {
+      while (!cancelled) {
+        setStage("idle");
+        setTyped("");
+        await wait(reducedMotion ? 100 : 500);
+        if (cancelled) return;
+
+        setStage("typing");
+        for (let i = 1; i <= HANDLE.length; i++) {
+          if (cancelled) return;
+          setTyped(HANDLE.slice(0, i));
+          await wait(reducedMotion ? 10 : 110 + Math.random() * 90);
+        }
+
+        await wait(reducedMotion ? 100 : 500);
+        if (cancelled) return;
+        setStage("ready");
+
+        await wait(reducedMotion ? 100 : 700);
+        if (cancelled) return;
+        setStage("resolving");
+
+        await wait(reducedMotion ? 100 : 900);
+        if (cancelled) return;
+        setStage("profile");
+
+        await wait(reducedMotion ? 300 : 3200);
+        if (cancelled) return;
+        setStage("reset");
+        await wait(reducedMotion ? 100 : 600);
+      }
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [visible, reducedMotion]);
+
+  const showTerminal = stage !== "profile";
+  const showProfile = stage === "profile";
+
+  return (
+    <motion.div
+      ref={containerRef}
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex min-h-[420px] w-full max-w-[480px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#05070a] p-5 shadow-2xl"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.14]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="relative z-10 mb-4 flex items-center justify-between">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">
+            Utility
+          </p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight text-white">
+            CodeChef User Finder
+          </h3>
+        </div>
+        <div
+          className="rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.22em]"
+          style={{ borderColor: `${accent}44`, color: accent }}
+        >
+          {stage === "profile" ? "Resolved" : "Idle"}
+        </div>
+      </div>
+
+      <div className="relative z-10 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-5 font-mono">
+        <AnimatePresence mode="wait">
+          {showTerminal && (
+            <motion.div
+              key="terminal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              className="flex h-full flex-col justify-center gap-4"
+            >
+              <p className="text-[11px] uppercase tracking-[0.28em] text-white/35">
+                Enter profile ID
+              </p>
+
+              <div
+                className="flex items-center gap-2 rounded-xl border bg-white/[0.03] px-4 py-3 transition-colors"
+                style={{
+                  borderColor:
+                    stage === "typing" || stage === "ready"
+                      ? `${accent}66`
+                      : "rgba(255,255,255,0.1)",
+                }}
+              >
+                <span className="text-sm text-white/80">{typed}</span>
+                {(stage === "idle" || stage === "typing") && (
+                  <motion.span
+                    className="h-4 w-[2px]"
+                    style={{ background: accent }}
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.9, repeat: Infinity }}
+                  />
+                )}
+              </div>
+
+              <motion.button
+                type="button"
+                disabled
+                className="flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider"
+                style={{
+                  background:
+                    stage === "ready" || stage === "resolving" ? accent : "rgba(255,255,255,0.06)",
+                  color: stage === "ready" || stage === "resolving" ? "#0a0a0a" : "rgba(255,255,255,0.35)",
+                }}
+                animate={
+                  stage === "resolving"
+                    ? { scale: [1, 0.96, 1] }
+                    : { scale: 1 }
+                }
+                transition={{ duration: 0.3 }}
+              >
+                Find User
+                <motion.span
+                  animate={stage === "resolving" ? { x: [0, 4, 0] } : { x: 0 }}
+                  transition={{ duration: 0.5, repeat: stage === "resolving" ? Infinity : 0 }}
+                >
+                  →
+                </motion.span>
+              </motion.button>
+
+              {stage === "resolving" && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-[10px] text-white/40"
+                >
+                  codechef.com/users/{typed}
+                </motion.p>
+              )}
+            </motion.div>
+          )}
+
+          {showProfile && (
+            <motion.div
+              key="profile"
+              initial={{ opacity: 0, scale: 0.92, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="flex h-full flex-col items-center justify-center gap-3 text-center"
+            >
+              <div
+                className="grid h-14 w-14 place-items-center rounded-xl border text-lg font-bold"
+                style={{ borderColor: `${accent}66`, color: accent }}
+              >
+                CC
+              </div>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-white/35">
+                CodeChef Profile
+              </p>
+              <p className="text-base font-semibold text-white/90">
+                @{HANDLE}
+              </p>
+              <p className="text-[10px] text-white/30">
+                codechef.com/users/{HANDLE}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <p className="relative z-10 mt-4 text-[10px] uppercase tracking-[0.24em] text-white/25">
+        HTML · CSS · JavaScript → Direct Profile Routing
+      </p>
+    </motion.div>
+  );
+}
+
+
+
+
+
+
+
+

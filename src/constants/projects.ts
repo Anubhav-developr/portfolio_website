@@ -137,5 +137,81 @@ export const projects: Project[] = [
   accent: "#38bdf8",
   github: "https://github.com/Anubhav-developr/cofwah",
   liveUrl: "https://cofwah.vercel.app/"
-}
+},
+{
+  name: "REC Sonbhadra – Official College Website",
+  kicker: "Institutional Web Platform",
+  description:
+    "Contributed to the official website of Rajkiya Engineering College Sonbhadra, helping build and refine a public-facing institutional platform for students, faculty, notices, departments, and academic information.",
+  longDescription:
+    "Worked on the official REC Sonbhadra website as part of a private repository-based development workflow. The platform serves as the college’s public digital presence, covering institutional information, circulars, department pages, contact details, facilities, and placement-related content. My contribution focused on improving the web experience for a real educational institution, with attention to usability, structure, and production-oriented development practices.",
+  tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+  proof: [
+    "Official institutional website contribution",
+    "Private repository collaboration",
+    "Public-facing academic content platform",
+    "Production deployment for real users"
+  ],
+  tone: "institutional",
+  accent: "#38bdf8",
+  github: "",
+  liveUrl: "https://www.recsonbhadra.ac.in"
+},
+{
+  name: "CocamS-K – Browser Camera Toolkit",
+  kicker: "WebRTC Media Experiment",
+  description:
+    "A browser-based camera application built with JavaScript that explores webcam access, media capture, and client-side recording directly in the browser.",
+  longDescription:
+    "CocamS-K is a front-end media experiment focused on real-time camera interaction inside the browser. Built with HTML, CSS, and JavaScript, the project works around browser media APIs, WebRTC-based webcam access, and file handling to create a hands-on camera experience. With separate webcam, screen, and recorder-oriented files in the codebase, it reflects practical experimentation with browser-native media workflows rather than a static UI-only build.",
+  tech: ["HTML", "CSS", "JavaScript", "WebRTC", "File API", "OpenCV.js"],
+  proof: [
+    "Browser webcam access",
+    "Client-side media interaction",
+    "Real-time capture workflow",
+    "Experimental computer-vision ready structure"
+  ],
+  tone: "experimental",
+  accent: "#22d3ee",
+  github: "https://github.com/Anubhav-developr/cocamS-K",
+  liveUrl: ""
+},
+{
+  name: "PIXEy-EDITOR – Browser Pixel Art Editor",
+  kicker: "Canvas-Based Creative Tool",
+  description:
+    "A browser-based pixel art editor built from scratch using vanilla JavaScript and the Canvas API, featuring drawing, rectangle, fill, color-pick, undo, and image import/export tools.",
+  longDescription:
+    "PIXEy-EDITOR is a self-built creative tool that recreates the core mechanics of a professional pixel-art application entirely in the browser. It combines a custom canvas rendering engine with a state-driven editor architecture, supporting freehand pixel drawing, rectangle shape tools, bucket fill, color picking, and multi-step undo history. Image loading and saving round out the workflow, making it a fully functional editor rather than a static demo. The project reflects hands-on engineering of canvas rendering, coordinate mapping, and interactive tool state management from the ground up.",
+  tech: ["JavaScript", "HTML5 Canvas API", "CSS"],
+  proof: [
+    "Custom canvas rendering engine",
+    "Multi-tool editor (draw, rectangle, fill, pick)",
+    "Undo history system",
+    "Image import/export workflow"
+  ],
+  tone: "pixel",
+  accent: "#22d3ee",
+  github: "https://github.com/Anubhav-developr/PIXEy-EDITOR",
+  liveUrl: ""
+},
+{
+  name: "CodeChef User Finder",
+  kicker: "Developer Utility",
+  description:
+    "A small, fast utility that resolves a CodeChef profile ID directly to that user's CodeChef profile page.",
+  longDescription:
+    "CodeChef User Finder is a lightweight HTML, CSS, and JavaScript utility built to remove the friction of manually navigating to CodeChef profiles. A user enters a CodeChef handle, and the application immediately routes them to the corresponding profile URL. It's a simple, focused tool rather than a full analytics dashboard, reflecting practical problem-solving for competitive programming workflows.",
+  tech: ["HTML", "CSS", "JavaScript"],
+  proof: [
+    "Instant handle-to-profile routing",
+    "Clean input-driven interface",
+    "Zero backend, fully client-side",
+    "Deployed on GitHub Pages"
+  ],
+  tone: "codechef",
+  accent: "#8b5cf6",
+  github: "https://github.com/Anubhav-developr/codechef-user-info",
+  liveUrl: "https://anubhav-developr.github.io/codechef-user-info/"
+},
 ];
