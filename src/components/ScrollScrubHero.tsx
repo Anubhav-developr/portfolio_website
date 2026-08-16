@@ -73,6 +73,7 @@ export function ScrollScrubHero({ className = "" }: ScrollScrubHeroProps) {
     let frame = 0;
 
     function resize() {
+      if (!container || !canvas || !context) return;
       const rect = container.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, rect.width * dpr);
@@ -83,6 +84,7 @@ export function ScrollScrubHero({ className = "" }: ScrollScrubHeroProps) {
     }
 
     function drawFrame(source: CanvasImageSource) {
+            if (!container || !canvas || !context) return;
       const rect = container.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
@@ -109,6 +111,7 @@ export function ScrollScrubHero({ className = "" }: ScrollScrubHeroProps) {
     }
 
     function update() {
+            if (!container || !canvas || !context) return;
       const rect = container.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const scrollStart = container.offsetTop;
