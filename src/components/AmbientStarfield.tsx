@@ -53,15 +53,18 @@ export function AmbientStarfield() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = window.innerWidth;
       height = window.innerHeight;
+       if (!canvas) return;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
+      if (!context) return;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
       stars = Array.from({ length: starCount }, () => makeStar(width, height));
     }
 
     function draw() {
+      if (!context) return;
       context.clearRect(0, 0, width, height);
       tick += 0.016;
 
