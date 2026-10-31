@@ -2,6 +2,84 @@ import type { Project } from "@/types/portfolio";
 
 export const projects: Project[] = [
   {
+    name: "PostPath",
+    kicker: "Postal workflow platform",
+    description:
+      "A focused postal-tech project designed around clearer service journeys, practical information, and a smoother user experience.",
+    longDescription:
+      "PostPath reflects a real-world approach to turning a familiar public-service workflow into a more accessible digital experience, with a clean interface and an emphasis on useful, easy-to-follow paths.",
+    tech: ["JavaScript", "HTML", "CSS", "Web UX"],
+    proof: ["Service-first UX", "Clear navigation flows", "Practical public utility"],
+    tone: "postpath",
+    accent: "#38bdf8",
+    github: "https://github.com/Anubhav-developr/postpath"
+  },
+  {
+    name: "System Health Monitor",
+    kicker: "Runtime observability utility",
+    description:
+      "A lightweight monitoring utility for tracking CPU and memory health and identifying overloaded system conditions.",
+    longDescription:
+      "The project turns low-level system signals into actionable health checks, with configurable thresholds and sampling strategies that can support more reliable long-running services.",
+    tech: ["Node.js", "JavaScript", "CPU metrics", "Memory metrics"],
+    proof: ["CPU and memory tracking", "Configurable thresholds", "Overload detection"],
+    tone: "health-monitor",
+    accent: "#a78bfa",
+    github: "https://github.com/Anubhav-developr/system-health-monitor"
+  },
+  {
+    name: "JEE to IIT",
+    kicker: "Exam preparation platform",
+    description:
+      "A learning-focused project that helps JEE aspirants structure preparation, discover useful guidance, and stay oriented toward IIT goals.",
+    longDescription:
+      "JEE to IIT combines an education-first content experience with a direct, motivational interface built to make preparation resources easier to approach and revisit.",
+    tech: ["JavaScript", "HTML", "CSS", "Education UX"],
+    proof: ["Student-first information design", "Goal-oriented flows", "Focused learning experience"],
+    tone: "jee-to-iit",
+    accent: "#6388ff",
+    github: "https://github.com/Anubhav-developr/JEEtoIIT"
+  },
+  {
+    name: "JEE to IIT App",
+    kicker: "Mobile learning companion",
+    description:
+      "The app companion to the JEE-to-IIT learning experience, shaped for focused access to preparation content on mobile devices.",
+    longDescription:
+      "This mobile-oriented build brings the same preparation mindset into a more compact experience, prioritising quick access, readable content, and repeatable study sessions.",
+    tech: ["Android", "Java", "Mobile UI", "Education UX"],
+    proof: ["Mobile-first study flow", "Quick content access", "Repeatable preparation loop"],
+    tone: "jee-to-iit-app",
+    accent: "#22d3ee",
+    github: "https://github.com/Anubhav-developr/JEEtoIIT-App"
+  },
+  {
+    name: "DigiPin Explorer",
+    kicker: "Location intelligence tool",
+    description:
+      "A location exploration project for understanding and working with India’s DigiPin address-grid concept through an interactive interface.",
+    longDescription:
+      "DigiPin Explorer turns a location-data concept into a more approachable product surface, helping users explore how digital addressing can improve precision and discoverability.",
+    tech: ["JavaScript", "Maps", "Geolocation", "Data visualisation"],
+    proof: ["Interactive location exploration", "Digital addressing concept", "Map-oriented UX"],
+    tone: "digipin",
+    accent: "#34d399",
+    github: "https://github.com/Anubhav-developr/digipinExplorer"
+  },
+  {
+    name: "House Price Predictor ML",
+    kicker: "Machine learning experiment",
+    description:
+      "A machine-learning project that learns from housing features to estimate property prices and make regression concepts tangible.",
+    longDescription:
+      "The project covers the practical prediction loop from preparing tabular data to training a regression model and presenting the result in a simple, understandable workflow.",
+    tech: ["Python", "Pandas", "Scikit-learn", "Regression", "Jupyter"],
+    proof: ["Feature-based prediction", "Regression workflow", "Applied ML learning project"],
+    tone: "house-price",
+    accent: "#f59e0b",
+    github: "https://github.com/Anubhav-developr/house-price-predictor-ml"
+  },
+  {
     name: "ExamPulse",
     kicker: "Android quiz engine",
     description:

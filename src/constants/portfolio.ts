@@ -50,7 +50,7 @@ export const navItems = [
 
 export const stats: Stat[] = [
   { value: "24", label: "CodeChef global rank" },
-  { value: "9", label: "production-grade projects shipped" },
+  { value: `${projects.length}+`, label: "projects shipped and explored" },
   { value: "2023", label: "B.Tech CSE graduate" }
 ];
 

@@ -1,6 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 
 export type ProjectTone =
+  | "postpath"
+  | "health-monitor"
+  | "jee-to-iit"
+  | "jee-to-iit-app"
+  | "digipin"
+  | "house-price"
   | "pulse"
   | "postoffice"
   | "tree"

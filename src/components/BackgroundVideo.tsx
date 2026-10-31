@@ -9,20 +9,11 @@ export function BackgroundVideo() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         poster="/assets/hero-lab.png"
         src="/assets/hero-bg.mp4"
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 z-10"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(2,3,4,0.18) 0%, rgba(2,3,4,0.58) 52%, rgba(2,3,4,0.9) 100%)",
-          boxShadow: "inset 0 0 120px 40px rgba(2,3,4,0.76)",
-          mixBlendMode: "multiply"
-        }}
-      />
+      <div aria-hidden="true" className="hero-bg-overlay absolute inset-0 z-10" />
     </>
   );
 }

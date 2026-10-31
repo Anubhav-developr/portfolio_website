@@ -1,14 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { navItems } from "@/constants/portfolio";
 import { cn } from "@/lib/utils";
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [elevated, setElevated] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [active, setActive] = useState(navItems[0]?.href ?? "#profile");
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    const nextTheme = savedTheme === "light" ? "light" : "dark";
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+    window.localStorage.setItem("portfolio-theme", nextTheme);
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -44,12 +59,9 @@ export function Navigation() {
       <nav
         aria-label="Primary navigation"
         className={cn(
-          "flex items-center justify-between rounded-full border-[0.5px] px-5 py-1.5 pr-1.5 shadow-[0_0_0_0.5px_rgba(255,255,255,0.04)_inset,0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-[400ms]",
-          elevated
-            ? "border-white/10 bg-[rgba(10,13,18,0.82)] backdrop-blur-[32px]"
-            : "border-white/[0.08] bg-[rgba(10,13,18,0.75)] backdrop-blur-[24px]"
+          "site-nav flex items-center justify-between rounded-full border-[0.5px] px-3 py-1.5 pl-4 shadow-[0_8px_32px_rgba(0,0,0,0.18)] transition-all duration-[400ms]",
+          elevated ? "site-nav--elevated" : ""
         )}
-        style={{ WebkitBackdropFilter: elevated ? "blur(32px) saturate(1.8)" : "blur(24px) saturate(1.8)" }}
       >
         <a
           href="#top"
@@ -83,10 +95,20 @@ export function Navigation() {
 
         <a
           href="#contact"
-          className="hidden rounded-full bg-[rgba(99,136,255,0.9)] px-[18px] py-2 text-[11px] font-semibold uppercase tracking-[0.04em] text-white shadow-[0_0_20px_rgba(99,136,255,0.3)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_32px_rgba(99,136,255,0.5)] md:inline-flex"
+          className="site-nav-cta hidden rounded-full px-[16px] py-2 text-[11px] font-semibold uppercase tracking-[0.04em] transition-all duration-200 hover:scale-[1.02] md:inline-flex"
         >
           Start a build
         </a>
+
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="theme-toggle ml-1 grid h-9 w-9 place-items-center rounded-full border-[0.5px] transition hover:-translate-y-px"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        >
+          {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        </button>
 
         <button
           type="button"
@@ -100,7 +122,7 @@ export function Navigation() {
       </nav>
 
       {open ? (
-        <div className="mt-3 rounded-3xl border-[0.5px] border-white/10 bg-[rgba(10,13,18,0.92)] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl md:hidden">
+        <div className="site-mobile-menu mt-3 rounded-3xl border-[0.5px] p-3 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-2xl md:hidden">
           {navItems.map((item) => (
             <a
               key={item.href}

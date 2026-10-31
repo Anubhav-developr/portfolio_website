@@ -9,6 +9,7 @@ function CountUpStat({ stat, index }: { stat: Stat; index: number }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const target = Number.parseInt(stat.value, 10);
+  const suffix = stat.value.slice(String(target).length);
   const [display, setDisplay] = useState(Number.isFinite(target) ? 0 : stat.value);
 
   useEffect(() => {
@@ -37,8 +38,8 @@ function CountUpStat({ stat, index }: { stat: Stat; index: number }) {
       ref={ref}
       className="reveal relative min-h-36 px-7 py-10 md:border-r-[0.5px] md:border-[var(--border-dim)] last:md:border-r-0"
     >
-      <p className="font-display text-[clamp(36px,5vw,56px)] font-extrabold leading-none text-transparent [background:var(--grad-name)] [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
-        {display}
+      <p className="stat-value font-display text-[clamp(36px,5vw,56px)] font-extrabold leading-none">
+        {display}{suffix}
       </p>
       <p className="mt-4 max-w-56 text-[12px] font-medium uppercase leading-5 tracking-[0.10em] text-[var(--text-muted)]">
         {stat.label}

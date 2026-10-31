@@ -1,6 +1,195 @@
 @import "../styles/tokens.css";
 @import "../styles/startup.css";
 
+html[data-theme="light"] {
+  --bg-void: #f7f9fc;
+  --bg-deep: #eef2f7;
+  --bg-surface: rgba(255, 255, 255, 0.82);
+  --bg-raised: #ffffff;
+  --bg-overlay: #e7edf5;
+  --text-primary: #101828;
+  --text-secondary: #475467;
+  --text-muted: #667085;
+  --text-ghost: #98a2b3;
+  --border-soft: rgba(16, 24, 40, 0.12);
+  --border-dim: rgba(16, 24, 40, 0.08);
+  --border-accent: rgba(68, 96, 210, 0.3);
+  --accent-blue: #4969d6;
+  --accent-glow: rgba(73, 105, 214, 0.14);
+  --grad-name: linear-gradient(110deg, #3856c5, #7556c9 48%, #168bb8);
+  --grad-hero: radial-gradient(circle at 50% 0%, rgba(93, 124, 230, 0.18), transparent 62%);
+  --grad-card: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(239, 244, 252, 0.88));
+}
+
+html[data-theme="light"] body {
+  color: var(--text-primary);
+  background: var(--bg-void);
+}
+
+html[data-theme="light"] .site-nav {
+  border-color: rgba(16, 24, 40, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-primary);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  backdrop-filter: blur(22px) saturate(1.4);
+}
+
+html[data-theme="light"] .site-nav--elevated {
+  background: rgba(18, 35, 63, 0.96);
+  box-shadow: 0 12px 34px rgba(18, 35, 63, 0.24);
+}
+
+html[data-theme="light"] .site-nav {
+  border-color: rgba(132, 168, 226, 0.28);
+  background: rgba(18, 35, 63, 0.94);
+  color: #f8fbff;
+  box-shadow: 0 10px 30px rgba(18, 35, 63, 0.2);
+}
+
+html[data-theme="light"] .site-nav .text-white\/\[0\.45\] {
+  color: rgba(239, 246, 255, 0.62);
+}
+
+html[data-theme="light"] .site-nav .text-white\/\[0\.45\]:hover {
+  color: #ffffff;
+}
+
+html[data-theme="light"] .site-nav-cta {
+  color: #0d1b34;
+  background: #9cc3ff;
+  box-shadow: 0 0 22px rgba(156, 195, 255, 0.32);
+}
+
+html[data-theme="light"] .site-mobile-menu {
+  border-color: rgba(132, 168, 226, 0.28);
+  background: rgba(18, 35, 63, 0.98);
+}
+
+html[data-theme="light"] .site-mobile-menu a {
+  color: rgba(239, 246, 255, 0.72);
+}
+
+html[data-theme="light"] .site-mobile-menu a:hover {
+  color: #ffffff;
+  background: rgba(156, 195, 255, 0.12);
+}
+
+.site-nav {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 13, 18, 0.62);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  backdrop-filter: blur(22px) saturate(1.6);
+}
+
+.site-nav-cta {
+  color: white;
+  background: rgba(99, 136, 255, 0.9);
+  box-shadow: 0 0 20px rgba(99, 136, 255, 0.22);
+}
+
+.theme-toggle {
+  border-color: var(--border-soft);
+  color: var(--text-secondary);
+  background: var(--bg-raised);
+}
+
+.theme-toggle:hover {
+  color: var(--accent-blue);
+  border-color: var(--border-accent);
+}
+
+html[data-theme="light"] .hero-bg-video {
+  opacity: 0.08;
+  filter: saturate(0.55) brightness(1.35);
+}
+
+.hero-bg-overlay {
+  background: linear-gradient(to bottom, rgba(2, 3, 4, 0.16) 0%, rgba(2, 3, 4, 0.58) 52%, rgba(2, 3, 4, 0.92) 100%);
+  box-shadow: inset 0 0 120px 40px rgba(2, 3, 4, 0.7);
+  mix-blend-mode: multiply;
+}
+
+.hero-main-overlay {
+  background: rgba(2, 3, 4, 0.32);
+}
+
+.hero-card-overlay {
+  background: radial-gradient(circle at 35% 20%, rgba(99, 136, 255, 0.18), transparent 42%), linear-gradient(180deg, transparent, rgba(2, 3, 4, 0.35));
+}
+
+.hero-chip {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 13, 18, 0.85);
+  color: var(--text-secondary);
+}
+
+.hero-scroll {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html[data-theme="light"] .hero-mobile-poster {
+  background: linear-gradient(135deg, #f7f9fc 0%, #edf3fb 48%, #e6eef8 100%);
+}
+
+html[data-theme="light"] .hero-bg-overlay {
+  background: linear-gradient(to bottom, rgba(247, 249, 252, 0.58) 0%, rgba(247, 249, 252, 0.68) 56%, rgba(238, 242, 247, 0.92) 100%);
+  box-shadow: inset 0 0 120px 40px rgba(255, 255, 255, 0.5);
+  mix-blend-mode: normal;
+}
+
+html[data-theme="light"] .hero-main-overlay {
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.32), rgba(228, 236, 248, 0.26));
+}
+
+html[data-theme="light"] .hero-card-overlay {
+  background: radial-gradient(circle at 35% 20%, rgba(99, 136, 255, 0.12), transparent 42%), linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.24));
+}
+
+html[data-theme="light"] .hero-chip {
+  border-color: rgba(16, 24, 40, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text-secondary);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+}
+
+html[data-theme="light"] .hero-scroll {
+  border-color: rgba(16, 24, 40, 0.14);
+  color: rgba(16, 24, 40, 0.55);
+}
+
+html[data-theme="light"] .space-scene-layer {
+  opacity: 0.22;
+  filter: invert(0.88) sepia(0.12) saturate(0.7);
+}
+
+/* Keep the native arrow visible and predictable across browsers/OS themes. */
+html,
+body {
+  cursor: default;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  cursor: text;
+}
+
+.startup-stage--quantum,
+.startup-stage--quantum * {
+  cursor: default;
+}
+
+.startup-stage--quantum button {
+  cursor: pointer;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -394,6 +583,15 @@ button {
     transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+.stat-value {
+  display: inline-block;
+  color: transparent;
+  background: var(--grad-name);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
@@ -493,11 +691,11 @@ button {
 }
 
 @media (pointer: fine) {
-  body,
+  body { cursor: default; }
   a,
   button,
+  [role="button"] { cursor: pointer; }
   input,
-  textarea {
-    cursor: none;
-  }
+  textarea,
+  select { cursor: text; }
 }

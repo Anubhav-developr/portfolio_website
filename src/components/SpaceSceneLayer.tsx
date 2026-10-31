@@ -37,7 +37,7 @@ export function SpaceSceneLayer() {
 
     const timer = window.setTimeout(() => {
       setQuality((current) => ({ ...current, ready: true }));
-    }, 260);
+    }, 900);
 
     mobileQuery.addEventListener("change", updateQuality);
     motionQuery.addEventListener("change", updateQuality);

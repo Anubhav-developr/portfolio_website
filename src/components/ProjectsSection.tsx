@@ -24,8 +24,8 @@ export function ProjectsSection() {
       <div className="section-shell">
         <SectionHeader
           eyebrow="Cinematic showcases"
-          title="Nine builds, each with its own engineering signature."
-          copy="Android systems, Python finance tools, cross-device sync, compiler fundamentals, AI search, and product-grade web craft."
+          title={`${projects.length} builds, each with its own engineering signature.`}
+          copy="Android systems, education platforms, postal utilities, machine learning experiments, cross-device sync, compiler fundamentals, and product-grade web craft."
         />
 
         <div className="space-y-10">

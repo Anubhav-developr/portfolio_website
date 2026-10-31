@@ -9,6 +9,9 @@ export function StartupIntro() {
 
   useEffect(() => {
     setMounted(true);
+    if (window.sessionStorage.getItem("anubhav-portfolio-intro-seen") === "1") {
+      setShowIntro(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -33,5 +36,12 @@ export function StartupIntro() {
     return <div className="startup-stage" aria-hidden="true" />;
   }
 
-  return <StartupAnimation onComplete={() => setShowIntro(false)} />;
+  return (
+    <StartupAnimation
+      onComplete={() => {
+        window.sessionStorage.setItem("anubhav-portfolio-intro-seen", "1");
+        setShowIntro(false);
+      }}
+    />
+  );
 }

@@ -27,7 +27,7 @@ export function HeroSection() {
     >
       <BackgroundVideo />
       <HeroCanvas />
-      <div aria-hidden="true" className="absolute inset-0 z-10 bg-[rgba(2,3,4,0.38)]" />
+      <div aria-hidden="true" className="hero-main-overlay absolute inset-0 z-10" />
       <div aria-hidden="true" className="section-fade z-20" />
 
       <div className="relative z-30 w-full">
@@ -94,7 +94,7 @@ export function HeroSection() {
                 sizes="(max-width: 1024px) 86vw, 34vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_20%,rgba(99,136,255,0.18),transparent_42%),linear-gradient(180deg,transparent,rgba(2,3,4,0.35))]" />
+              <div className="hero-card-overlay absolute inset-0" />
             </div>
 
             {heroChips.map((chip) => {
@@ -102,7 +102,7 @@ export function HeroSection() {
               return (
                 <div
                   key={chip.label}
-                  className={`absolute inline-flex items-center gap-2 rounded-full border-[0.5px] border-white/10 bg-[rgba(10,13,18,0.85)] px-[14px] py-1.5 text-[11px] font-medium text-[var(--text-secondary)] shadow-[0_4px_16px_rgba(0,0,0,0.3)] backdrop-blur-xl ${chip.className}`}
+                  className={`hero-chip absolute inline-flex items-center gap-2 rounded-full border-[0.5px] px-[14px] py-1.5 text-[11px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.18)] backdrop-blur-xl ${chip.className}`}
                   style={{ animation: `chipFloat ${chip.duration} ease-in-out infinite` }}
                 >
                   <Icon className="h-3.5 w-3.5 text-[var(--accent-cyan)]" />
@@ -116,7 +116,7 @@ export function HeroSection() {
         <a
           href="#profile"
           aria-label="Scroll to profile"
-          className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 rounded-full border-[0.5px] border-white/[0.12] p-3 text-white/50 transition hover:border-white/25 hover:text-white md:grid"
+          className="hero-scroll absolute bottom-4 left-1/2 hidden -translate-x-1/2 rounded-full border-[0.5px] p-3 transition md:grid"
         >
           <ChevronDown className="h-5 w-5 animate-bounce" />
         </a>

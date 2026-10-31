@@ -50,9 +50,9 @@ export default function Home() {
         <HeroSection />
         <StatsRibbon />
         <ProfileSection />
+        <TimelineSection />
         <ProjectsSection />
         <SkillsSection />
-        <TimelineSection />
         <AchievementsSection />
         <ContactSection />
       </main>

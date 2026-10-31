@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useEffect, useState , useRef} from "react";
+import { useEffect, useState , useRef} from "react";
 import { motion,useMotionValue, useSpring, useTransform,useAnimation ,useReducedMotion,AnimatePresence} from "framer-motion";
 import { ArrowRight, Code2, ExternalLink, Globe, Landmark, Monitor, Smartphone } from "lucide-react";
 import type { Project, ProjectTone } from "@/types/portfolio";
@@ -8,22 +8,32 @@ import type { Project, ProjectTone } from "@/types/portfolio";
 type VisualProps = { accent: string };
 
 export function ProjectVisual({ project }: { project: Project }) {
-  const visuals: Record<string, ReactNode> = {
-    pulse: <ExamPulseVisual accent={project.accent} />,
-    postoffice: <PostOfficeVisual accent={project.accent} />,
-    tree: <MinimaxVisual accent={project.accent} />,
-    compiler: <CompilerVisual accent={project.accent} />,
-    clipboard: <ClipboardVisual accent={project.accent} />,
-    invoice: <InvoiceVisual accent={project.accent} />,
-    weather: <WeatherVisual accent={project.accent} />,
-    journal: <JournalVisual accent={project.accent} />,
-    portfolio: <PortfolioVisual accent={project.accent} />,
-    "myth-buster" : <CofWahVisual accent={project.accent} />,
-    institutional: <RecSonbhadraVisual accent={project.accent} />,
-    experimental: <CocamSKVisual accent={project.accent} />,
-    pixel: <PixeyEditorShowcase accent={project.accent} />,
-    codechef: <CodeChefFinderShowcase accent={project.accent} />,
-  };
+  // Keep this lazy by selection: constructing every visual for every card made
+  // the projects section do much more work than the browser ever displayed.
+  const visual = (() => {
+    switch (project.tone) {
+      case "postpath": return <PostPathVisual accent={project.accent} />;
+      case "health-monitor": return <HealthMonitorVisual accent={project.accent} />;
+      case "jee-to-iit": return <JeeToIitVisual accent={project.accent} />;
+      case "jee-to-iit-app": return <JeeToIitAppVisual accent={project.accent} />;
+      case "digipin": return <DigiPinVisual accent={project.accent} />;
+      case "house-price": return <HousePriceVisual accent={project.accent} />;
+      case "pulse": return <ExamPulseVisual accent={project.accent} />;
+      case "postoffice": return <PostOfficeVisual accent={project.accent} />;
+      case "tree": return <MinimaxVisual accent={project.accent} />;
+      case "compiler": return <CompilerVisual accent={project.accent} />;
+      case "clipboard": return <ClipboardVisual accent={project.accent} />;
+      case "invoice": return <InvoiceVisual accent={project.accent} />;
+      case "weather": return <WeatherVisual accent={project.accent} />;
+      case "journal": return <JournalVisual accent={project.accent} />;
+      case "portfolio": return <PortfolioVisual accent={project.accent} />;
+      case "myth-buster": return <CofWahVisual accent={project.accent} />;
+      case "institutional": return <RecSonbhadraVisual accent={project.accent} />;
+      case "experimental": return <CocamSKVisual accent={project.accent} />;
+      case "pixel": return <PixeyEditorShowcase accent={project.accent} />;
+      case "codechef": return <CodeChefFinderShowcase accent={project.accent} />;
+    }
+  })();
 
   return (
     <div className="relative min-h-[300px] overflow-hidden border-b-[0.5px] border-[var(--border-soft)] bg-[var(--bg-raised)] p-5 lg:min-h-full lg:border-b-0 lg:border-r-[0.5px]">
@@ -35,9 +45,78 @@ export function ProjectVisual({ project }: { project: Project }) {
         }}
       />
       <div className="relative z-10 flex h-full min-h-[280px] items-center justify-center">
-        {visuals[project.tone]}
+        {visual}
       </div>
     </div>
+  );
+}
+
+function PostPathVisual({ accent }: VisualProps) {
+  const stops = ["Request", "Sorting", "Dispatch", "Delivered"];
+
+  return (
+    <div className="relative w-full max-w-[500px] rounded-[26px] border border-white/[0.12] bg-ink-900/80 p-5 shadow-velvet">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-[0.22em] text-white/[0.42]">PostPath / route</span>
+        <motion.span className="h-2 w-2 rounded-full" style={{ background: accent, boxShadow: `0 0 18px ${accent}` }} animate={{ opacity: [0.35, 1, 0.35] }} transition={{ duration: 1.8, repeat: Infinity }} />
+      </div>
+      <div className="relative mt-8 flex justify-between">
+        <div className="absolute left-3 right-3 top-3 h-px bg-white/10" />
+        <motion.div className="absolute left-3 top-3 h-px origin-left" style={{ background: accent }} animate={{ scaleX: [0.12, 1, 0.12] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }} />
+        {stops.map((stop, index) => (
+          <div key={stop} className="relative z-10 flex w-1/4 flex-col items-center gap-3">
+            <motion.span className="h-6 w-6 rounded-full border bg-ink-950" style={{ borderColor: `${accent}99` }} animate={{ scale: index === 1 ? [1, 1.18, 1] : 1, backgroundColor: index === 1 ? [`${accent}22`, `${accent}88`, `${accent}22`] : "#050709" }} transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }} />
+            <span className="text-center text-[9px] text-white/[0.58]">{stop}</span>
+          </div>
+        ))}
+      </div>
+      <motion.div className="mt-7 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3" animate={{ x: [0, 6, 0] }} transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}>
+        <span className="grid h-9 w-9 place-items-center rounded-xl text-sm" style={{ background: `${accent}22`, color: accent }}>✉</span>
+        <div className="flex-1"><div className="h-2 w-24 rounded-full bg-white/20" /><div className="mt-2 h-1.5 w-36 rounded-full bg-white/10" /></div>
+        <span className="font-mono text-[9px] text-white/40">PO-2841</span>
+      </motion.div>
+    </div>
+  );
+}
+
+function HealthMonitorVisual({ accent }: VisualProps) {
+  return (
+    <div className="w-full max-w-[430px] rounded-[26px] border border-white/[0.12] bg-ink-900/85 p-5 shadow-velvet">
+      <div className="flex items-center justify-between"><span className="text-[10px] uppercase tracking-[0.22em] text-white/[0.42]">System health / live</span><span className="rounded-full px-2 py-1 text-[9px] font-bold uppercase" style={{ color: accent, background: `${accent}18` }}>healthy</span></div>
+      <div className="mt-6 grid grid-cols-2 gap-3">
+        {[{ label: "CPU load", value: "42%", bars: 6 }, { label: "Memory", value: "6.8 GB", bars: 4 }].map((metric, index) => (
+          <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/[0.035] p-3"><div className="flex justify-between text-[9px] text-white/40"><span>{metric.label}</span><span style={{ color: accent }}>{metric.value}</span></div><div className="mt-4 flex h-12 items-end gap-1">{Array.from({ length: 8 }).map((_, bar) => <motion.span key={bar} className="flex-1 rounded-t-sm" style={{ background: accent }} animate={{ height: [`${20 + ((bar + index) % 4) * 13}%`, `${35 + ((bar + index * 2) % 5) * 12}%`, `${20 + ((bar + index) % 4) * 13}%`], opacity: [0.28, 0.85, 0.28] }} transition={{ duration: 1.8, delay: bar * 0.08, repeat: Infinity }} />)}</div></div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] p-3"><motion.span className="h-2 w-2 rounded-full" style={{ background: accent }} animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 1.2, repeat: Infinity }} /><div className="flex-1"><div className="h-2 w-28 rounded-full bg-white/20" /><div className="mt-2 h-1.5 w-44 rounded-full bg-white/10" /></div><span className="font-mono text-[9px] text-white/40">1.0s poll</span></div>
+    </div>
+  );
+}
+
+function JeeToIitVisual({ accent }: VisualProps) {
+  const steps = ["Concepts", "Practice", "Mocks", "IIT target"];
+  return (
+    <div className="w-full max-w-[460px] rounded-[26px] border border-white/[0.12] bg-ink-900/80 p-5 shadow-velvet"><div className="flex items-center justify-between"><span className="text-[10px] uppercase tracking-[0.22em] text-white/[0.42]">JEE → IIT / roadmap</span><span className="font-mono text-[10px]" style={{ color: accent }}>72% ready</span></div><div className="relative mt-8 space-y-4"><div className="absolute bottom-4 left-[11px] top-4 w-px" style={{ background: `${accent}55` }} />{steps.map((step, index) => <motion.div key={step} className="relative flex items-center gap-4" initial={{ opacity: 0.45 }} animate={{ opacity: [0.45, 1, 0.45] }} transition={{ duration: 2.8, delay: index * 0.35, repeat: Infinity }}><span className="z-10 h-6 w-6 rounded-full border-2 bg-ink-950" style={{ borderColor: accent }} /><div className="flex-1 rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2 text-[10px] text-white/[0.68]">{step}</div><span className="font-mono text-[9px] text-white/30">0{index + 1}</span></motion.div>)}</div><div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/10"><motion.div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${accent}, #a78bfa)` }} animate={{ width: ["18%", "72%", "18%"] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} /></div></div>
+  );
+}
+
+function JeeToIitAppVisual({ accent }: VisualProps) {
+  return (
+    <div className="relative h-[310px] w-[180px] rounded-[28px] border border-white/[0.16] bg-ink-900 p-3 shadow-velvet"><div className="h-full rounded-[22px] border border-white/[0.08] bg-[#081014] p-3"><div className="mx-auto mb-4 h-1 w-12 rounded-full bg-white/20" /><div className="flex items-center justify-between"><span className="text-[10px] font-semibold text-white/70">Today’s prep</span><span className="text-[9px]" style={{ color: accent }}>Q 08/20</span></div><motion.div className="mt-4 rounded-2xl p-3" style={{ background: `${accent}16` }} animate={{ y: [0, -3, 0] }} transition={{ duration: 2.4, repeat: Infinity }}><span className="text-[9px] uppercase tracking-[0.16em] text-white/40">Physics</span><p className="mt-2 text-[11px] text-white/80">Current electricity</p></motion.div><div className="mt-4 space-y-2">{["A 12 Ω resistor", "B 6 Ω resistor", "C 4 Ω resistor"].map((option, index) => <motion.div key={option} className="rounded-xl border px-3 py-2 text-[9px] text-white/55" style={{ borderColor: index === 1 ? `${accent}99` : "rgba(255,255,255,.08)", background: index === 1 ? `${accent}18` : "rgba(255,255,255,.03)" }} animate={index === 1 ? { x: [0, 4, 0] } : {}} transition={{ duration: 1.6, repeat: Infinity }}>{option}</motion.div>)}</div><div className="mt-4 flex gap-1">{Array.from({ length: 5 }).map((_, index) => <motion.span key={index} className="h-1.5 flex-1 rounded-full" style={{ background: accent }} animate={{ opacity: index < 3 ? [0.4, 1, 0.4] : 0.2 }} transition={{ delay: index * 0.12, duration: 1.5, repeat: Infinity }} />)}</div></div></div>
+  );
+}
+
+function DigiPinVisual({ accent }: VisualProps) {
+  const cells = Array.from({ length: 25 });
+  return (
+    <div className="relative w-full max-w-[450px] rounded-[26px] border border-white/[0.12] bg-ink-900/80 p-5 shadow-velvet"><div className="flex items-center justify-between"><span className="text-[10px] uppercase tracking-[0.22em] text-white/[0.42]">DigiPin / explorer</span><span className="font-mono text-[9px]" style={{ color: accent }}>26.8467° N</span></div><div className="relative mt-5 overflow-hidden rounded-2xl border border-white/10 bg-[#071012] p-3"><div className="grid grid-cols-5 gap-1 opacity-70">{cells.map((_, index) => <span key={index} className="aspect-square rounded-sm border" style={{ borderColor: `${accent}${index % 6 === 0 ? "88" : "22"}`, background: index % 7 === 0 ? `${accent}22` : "transparent" }} />)}</div><motion.div className="absolute left-[52%] top-[48%] grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border" style={{ borderColor: accent, background: `${accent}24`, color: accent }} animate={{ scale: [0.75, 1.12, 0.75], boxShadow: [`0 0 0 ${accent}00`, `0 0 28px ${accent}88`, `0 0 0 ${accent}00`] }} transition={{ duration: 2.5, repeat: Infinity }}><span className="text-lg">⌖</span></motion.div></div><div className="mt-4 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2"><span className="text-[9px] text-white/40">Address grid locked</span><span className="font-mono text-[9px]" style={{ color: accent }}>DGP-7F4A</span></div></div>
+  );
+}
+
+function HousePriceVisual({ accent }: VisualProps) {
+  const points = [18, 30, 26, 46, 40, 62, 56, 79];
+  return (
+    <div className="w-full max-w-[450px] rounded-[26px] border border-white/[0.12] bg-ink-900/80 p-5 shadow-velvet"><div className="flex items-center justify-between"><span className="text-[10px] uppercase tracking-[0.22em] text-white/[0.42]">House price / prediction</span><span className="font-mono text-[10px]" style={{ color: accent }}>₹ 84.2L</span></div><div className="relative mt-6 h-[150px] rounded-2xl border border-white/10 bg-white/[0.025] p-4"><div className="absolute inset-x-4 bottom-7 h-px bg-white/10" /><div className="absolute inset-x-4 bottom-7 h-px origin-left rotate-[-18deg]" style={{ background: accent, transformOrigin: "left center" }} /><div className="absolute inset-x-4 bottom-7 flex h-[105px] items-end justify-between">{points.map((point, index) => <motion.span key={index} className="w-2 rounded-full" style={{ background: accent }} animate={{ height: [`${point}%`, `${Math.min(point + 10, 92)}%`, `${point}%`], opacity: [0.35, 1, 0.35] }} transition={{ duration: 2.6, delay: index * 0.12, repeat: Infinity }} />)}</div><span className="absolute bottom-2 left-4 text-[8px] text-white/25">area / sqft</span><span className="absolute left-2 top-3 -rotate-90 text-[8px] text-white/25">price</span></div><div className="mt-4 grid grid-cols-3 gap-2">{["3 bed", "2 bath", "1,450 sqft"].map((item) => <span key={item} className="rounded-xl border border-white/10 bg-white/[0.035] px-2 py-2 text-center text-[9px] text-white/50">{item}</span>)}</div></div>
   );
 }
 
