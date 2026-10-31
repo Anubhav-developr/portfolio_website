@@ -1,6 +1,14 @@
 @import "../styles/tokens.css";
 @import "../styles/startup.css";
 
+@font-face {
+  font-family: "Space Grotesk Portfolio";
+  src: url("/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
 html[data-theme="light"] {
   --bg-void: #f7f9fc;
   --bg-deep: #eef2f7;

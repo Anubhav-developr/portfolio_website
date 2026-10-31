@@ -1,7 +1,7 @@
 :root {
-  --font-display: "Clash Display", "Space Grotesk", "Inter", system-ui, sans-serif;
-  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  --font-display: "Space Grotesk Portfolio", "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Space Grotesk Portfolio", "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Grotesk Portfolio", "Space Grotesk", ui-monospace, monospace;
 
   /* Base */
   --bg-void: #020304;
